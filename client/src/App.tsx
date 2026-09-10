@@ -25,6 +25,7 @@ import { CategoriesAdminPage } from './admin/pages/CategoriesAdminPage';
 import { HeroSlidesAdminPage } from './admin/pages/HeroSlidesAdminPage';
 import { EnquiriesAdminPage } from './admin/pages/EnquiriesAdminPage';
 import { CustomersAdminPage } from './admin/pages/CustomersAdminPage';
+import { BrandsAdminPage } from './admin/pages/BrandsAdminPage';
 import { SettingsAdminPage } from './admin/pages/SettingsAdminPage';
 
 export default function App() {
@@ -55,10 +56,11 @@ export default function App() {
               <Route element={<AdminLayout />}>
                 <Route index element={<Navigate to="/admin/dashboard" replace />} />
                 <Route path="dashboard" element={<DashboardPage />} />
+                <Route path="enquiries" element={<EnquiriesAdminPage />} />
                 <Route path="products" element={<ProductsAdminPage />} />
                 <Route path="categories" element={<CategoriesAdminPage />} />
                 <Route path="hero-slides" element={<HeroSlidesAdminPage />} />
-                <Route path="enquiries" element={<EnquiriesAdminPage />} />
+                <Route path="brands" element={<BrandsAdminPage />} />
                 <Route path="customers" element={<CustomersAdminPage />} />
                 <Route path="settings" element={<SettingsAdminPage />} />
               </Route>

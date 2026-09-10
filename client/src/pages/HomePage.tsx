@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { HeroSection } from '../components/home/HeroSection';
+import { CompanyLogosMarquee } from '../components/home/CompanyLogosMarquee';
 import { CategoryGridSection } from '../components/home/CategoryGridSection';
 import { FeaturedProductsSection } from '../components/home/FeaturedProductsSection';
 import { WhyChooseUsSection } from '../components/home/WhyChooseUsSection';
@@ -40,6 +41,7 @@ export const HomePage: React.FC = () => {
   return (
     <div className="w-full">
       <HeroSection slides={slides} />
+      <CompanyLogosMarquee />
       <CategoryGridSection categories={categories} />
       <FeaturedProductsSection products={featuredProducts} />
       <WhyChooseUsSection />
