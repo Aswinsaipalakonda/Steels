@@ -109,7 +109,7 @@ export const QuickQuoteModal: React.FC<QuickQuoteModalProps> = ({
           <div className="grid grid-cols-3 gap-2 bg-[#F8FAF7] p-3.5 rounded-2xl border border-[#E2EBE5] mb-6 text-xs text-left">
             <div className="flex items-center gap-1.5 text-[#03281A] font-semibold">
               <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
-              <span>BIS Certified</span>
+              <span>Quality Certified</span>
             </div>
             <div className="flex items-center gap-1.5 text-[#03281A] font-semibold">
               <Clock className="w-4 h-4 text-emerald-600 shrink-0" />
@@ -117,7 +117,7 @@ export const QuickQuoteModal: React.FC<QuickQuoteModalProps> = ({
             </div>
             <div className="flex items-center gap-1.5 text-[#03281A] font-semibold">
               <FileCheck className="w-4 h-4 text-emerald-600 shrink-0" />
-              <span>MTC Provided</span>
+              <span>Certificate Included</span>
             </div>
           </div>
 

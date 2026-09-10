@@ -10,7 +10,7 @@ const fallbackBrands: Brand[] = [
     name: 'Tata Steel',
     slug: 'tata-steel',
     logoUrl: 'https://images.unsplash.com/photo-1542744094-3a31f272c490?auto=format&fit=crop&w=400&q=80',
-    description: 'IS 1786 Certified • Tiscon 550D & Heavy Structural Beams',
+    description: 'Certified Construction Rebars • Heavy Structural Beams',
     isActive: true,
   },
   {
@@ -18,7 +18,7 @@ const fallbackBrands: Brand[] = [
     name: 'JSW Steel',
     slug: 'jsw-steel',
     logoUrl: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=400&q=80',
-    description: 'IS 2062 Grade • Neosteel High-Yield Earthquake Resistant TMT',
+    description: 'High-Strength Steel • Earthquake Resistant Construction Steel',
     isActive: true,
   },
   {
@@ -26,7 +26,7 @@ const fallbackBrands: Brand[] = [
     name: 'SAIL',
     slug: 'sail',
     logoUrl: 'https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?auto=format&fit=crop&w=400&q=80',
-    description: 'Heavy Industrial Boiler & Ship-Building Quality Plates',
+    description: 'Government Steel Authority • Heavy Industrial Plates & Beams',
     isActive: true,
   },
   {
@@ -34,7 +34,7 @@ const fallbackBrands: Brand[] = [
     name: 'Jindal Steel & Power',
     slug: 'jindal-steel-power',
     logoUrl: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=400&q=80',
-    description: 'Jindal Panther 550D & High-Tensile Structural Parallel Beams',
+    description: 'High-Tensile Parallel Beams • Premium Quality Steel Rebars',
     isActive: true,
   },
   {
@@ -42,7 +42,7 @@ const fallbackBrands: Brand[] = [
     name: 'AM/NS India',
     slug: 'amns-india',
     logoUrl: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=400&q=80',
-    description: 'ArcelorMittal Nippon Steel • Premium HR Coils & Galvanized Sheets',
+    description: 'ArcelorMittal Nippon Steel • Premium Sheets & Galvanized Steel',
     isActive: true,
   },
   {
@@ -50,7 +50,7 @@ const fallbackBrands: Brand[] = [
     name: 'RINL Vizag Steel',
     slug: 'rinl-vizag-steel',
     logoUrl: 'https://images.unsplash.com/photo-1579546929518-9e396f3cc809?auto=format&fit=crop&w=400&q=80',
-    description: 'Rashtriya Ispat Nigam • Premium Wire Rods & Heavy Structural Angles',
+    description: 'Vizag Steel Plant • Heavy Structural Angles & Steel Rods',
     isActive: true,
   },
   {
@@ -58,7 +58,7 @@ const fallbackBrands: Brand[] = [
     name: 'APL Apollo Tubes',
     slug: 'apl-apollo-tubes',
     logoUrl: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=400&q=80',
-    description: 'Heavy Duty Hollow Sections & Structural Pipes',
+    description: 'Heavy-Duty Hollow Sections • Industrial Square & Round Pipes',
     isActive: true,
   },
 ];
@@ -96,11 +96,11 @@ export const CompanyLogosMarquee: React.FC = () => {
         <div className="flex items-center gap-2">
           <span className="w-2 h-2 rounded-full bg-[#07552B] animate-pulse" />
           <span className="text-[11px] font-bold uppercase tracking-wider text-[#07552B]">
-            Primary Mill Alliances & Certified Distributorships
+            Authorized Steel Manufacturers & Supply Partners
           </span>
         </div>
         <span className="hidden sm:inline-block text-[11px] font-medium text-[#526458]">
-          Direct Mill Dispatches • 100% Prime MTC Certified
+          Direct Factory Supply • 100% Certified Quality Guaranteed
         </span>
       </div>
 

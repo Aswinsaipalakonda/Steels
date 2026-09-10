@@ -15,7 +15,7 @@ const fallbackSlides: HeroSlide[] = [
     id: '1',
     title: 'BUILT FOR STRENGTH. ENGINEERED FOR SCALE.',
     subtitle:
-      'Premier industrial distributor of certified primary TMT rebars, heavy structural beams, and precision steel products direct from primary mills.',
+      'Premier industrial distributor of certified high-strength steel rebars, structural beams, and heavy-duty steel products direct from top steel manufacturers.',
     bgImageUrl:
       'https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?auto=format&fit=crop&w=1920&q=85',
     primaryCtaText: 'Explore Products',
@@ -90,7 +90,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ slides }) => {
             className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-emerald-400/30 text-xs font-bold text-emerald-300 mb-6 backdrop-blur-md"
           >
             <ShieldCheck className="w-4 h-4 text-emerald-400" />
-            <span>BIS Certified • IS 1786:2008 & IS 2062:2011 Grade Materials</span>
+            <span>Government Quality Certified • High-Strength Construction & Structural Steel</span>
           </motion.div>
 
           {/* Confident Headline */}

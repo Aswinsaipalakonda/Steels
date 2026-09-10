@@ -14,8 +14,8 @@ export const Footer: React.FC = () => {
               <ShieldCheck className="w-5 h-5" />
             </div>
             <div>
-              <h5 className="font-bold text-[#03281A] text-sm">BIS 1786 & IS 2062 Certified</h5>
-              <p className="text-xs text-[#697057]">100% primary mill verified physical & chemical test certs.</p>
+              <h5 className="font-bold text-[#03281A] text-sm">Certified Quality Guarantee</h5>
+              <p className="text-xs text-[#697057]">100% factory verified strength and chemical purity on all steel.</p>
             </div>
           </div>
 
@@ -109,7 +109,7 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <Link to="/quality" className="hover:text-[#07552B] transition">
-                  Quality Standards & MTC
+                  Quality Assurance & Standards
                 </Link>
               </li>
               <li>

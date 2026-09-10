@@ -14,9 +14,11 @@ import {
   Menu,
   X,
   ExternalLink,
-  Clock,
   Building2,
-  Bell,
+  Home,
+  ChevronRight,
+  ShieldCheck,
+  Sparkles,
 } from 'lucide-react';
 
 export const AdminLayout: React.FC = () => {
@@ -24,32 +26,14 @@ export const AdminLayout: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
-  const [currentTime, setCurrentTime] = useState('');
-
-  useEffect(() => {
-    const updateClock = () => {
-      const now = new Date();
-      setCurrentTime(
-        now.toLocaleTimeString('en-US', {
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit',
-          hour12: true,
-        })
-      );
-    };
-    updateClock();
-    const interval = setInterval(updateClock, 1000);
-    return () => clearInterval(interval);
-  }, []);
 
   const navItems = [
     { label: 'Dashboard', href: '/admin/dashboard', icon: LayoutDashboard },
-    { label: 'Enquiries & Orders', href: '/admin/enquiries', icon: Inbox },
+    { label: 'Enquiries & Orders', href: '/admin/enquiries', icon: Inbox, badge: 'New' },
     { label: 'Products', href: '/admin/products', icon: Package },
     { label: 'Categories', href: '/admin/categories', icon: FolderTree },
     { label: 'Hero Banners', href: '/admin/hero-slides', icon: Sliders },
-    { label: 'Partner Brands', href: '/admin/brands', icon: Building2 },
+    { label: 'Partner Brands', href: '/admin/brands', icon: Building2, badge: 'Active' },
     { label: 'Customer Leads', href: '/admin/customers', icon: Users },
     { label: 'Settings', href: '/admin/settings', icon: Settings },
   ];
@@ -59,51 +43,73 @@ export const AdminLayout: React.FC = () => {
     navigate('/admin/login');
   };
 
+  // Determine current active section for breadcrumbs
+  const currentNavItem = navItems.find(
+    (item) =>
+      location.pathname === item.href ||
+      (item.href !== '/admin/dashboard' && location.pathname.startsWith(item.href))
+  );
+  const activeLabel = currentNavItem?.label || 'Dashboard';
+
   return (
     <div className="min-h-screen bg-[#FAFCFA] text-[#111814] flex font-sans">
-      {/* Sidebar Desktop (Styled as in Reference Image 2 with Light Theme) */}
-      <aside className="hidden lg:flex w-64 bg-white border-r border-[#E2EBE5] flex-col justify-between shrink-0 shadow-sm z-20">
-        <div>
+      {/* Sidebar Desktop: Deep Luxury Forest-Night Container with White Capsule Active Pill (Reference Image 2) */}
+      <aside className="hidden lg:flex w-68 bg-[#061B12] flex-col justify-between shrink-0 shadow-2xl z-20 sticky top-0 h-screen border-r border-[#04150E]">
+        <div className="flex flex-col flex-1 overflow-y-auto">
           {/* Top Brand Header */}
-          <div className="p-6 border-b border-[#E2EBE5]">
-            <Link to="/admin/dashboard" className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-2xl bg-[#07552B] text-white flex items-center justify-center font-black shadow-sm">
-                <Logo variant="dark" showText={false} size="sm" />
-              </div>
-              <div className="flex flex-col">
-                <span className="font-black text-lg tracking-tight uppercase leading-none font-sans text-[#111814]">
-                  Steels
-                </span>
-                <span className="flex items-center gap-1 text-[9px] font-bold tracking-widest text-[#07552B] uppercase mt-1">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#07552B]" />
-                  Industrial Supply
-                </span>
-              </div>
-            </Link>
-          </div>
-
-          {/* Section Heading & Navigation list */}
-          <div className="p-4">
-            <div className="px-3 mb-2 text-[10px] font-bold uppercase tracking-widest text-[#526458]">
-              General Navigation
+          <div className="p-6 flex items-center gap-3.5 border-b border-white/10">
+            {/* White Circular Badge with Steels Logo */}
+            <div className="w-11 h-11 rounded-full bg-white flex items-center justify-center p-1.5 shadow-md shrink-0">
+              <Logo variant="light" showText={false} size="sm" />
             </div>
 
-            <nav className="space-y-1">
+            <div className="flex flex-col min-w-0">
+              <span className="font-black text-base text-white tracking-tight uppercase leading-none font-sans truncate">
+                Steels
+              </span>
+              <span className="flex items-center gap-1.5 text-[10px] font-bold text-emerald-400 tracking-wider uppercase mt-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+                <span className="truncate">Industrial Supply</span>
+              </span>
+            </div>
+          </div>
+
+          {/* Navigation Links (Interactive High-Contrast Capsule Pills matching Image 2) */}
+          <div className="pt-6 px-3.5 flex-1">
+            <nav className="space-y-2">
               {navItems.map((item) => {
                 const Icon = item.icon;
-                const isActive = location.pathname === item.href;
+                const isActive =
+                  location.pathname === item.href ||
+                  (item.href !== '/admin/dashboard' && location.pathname.startsWith(item.href));
+
                 return (
                   <Link
                     key={item.label}
                     to={item.href}
-                    className={`flex items-center gap-3 px-4 py-2.5 rounded-2xl text-xs font-semibold uppercase tracking-wider transition-all duration-200 ${
+                    className={`group relative flex items-center justify-between px-4 py-3.5 rounded-full text-xs transition-all duration-200 ${
                       isActive
-                        ? 'bg-[#07552B] text-white shadow-sm font-bold'
-                        : 'text-[#526458] hover:text-[#111814] hover:bg-[#F4F7F5]'
+                        ? 'bg-white text-[#061B12] font-black shadow-xl scale-[1.02]'
+                        : 'text-emerald-100/75 hover:text-white hover:bg-white/10 font-semibold'
                     }`}
                   >
-                    <Icon className={`w-4 h-4 ${isActive ? 'text-white' : 'text-[#526458]'}`} />
-                    <span>{item.label}</span>
+                    <div className="flex items-center gap-3.5 min-w-0">
+                      <Icon
+                        className={`w-4 h-4 shrink-0 transition-transform duration-200 group-hover:scale-110 ${
+                          isActive ? 'text-[#07552B]' : 'text-emerald-400/80 group-hover:text-white'
+                        }`}
+                      />
+                      <span className="truncate tracking-wide">{item.label}</span>
+                    </div>
+
+                    {/* Subtle status indicators / badges */}
+                    {isActive ? (
+                      <span className="w-2 h-2 rounded-full bg-[#07552B] shrink-0" />
+                    ) : item.badge ? (
+                      <span className="text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-white/10 text-emerald-300 group-hover:bg-white/20 transition">
+                        {item.badge}
+                      </span>
+                    ) : null}
                   </Link>
                 );
               })}
@@ -111,68 +117,66 @@ export const AdminLayout: React.FC = () => {
           </div>
         </div>
 
-        {/* Sidebar Footer - Logout Action */}
-        <div className="p-4 border-t border-[#E2EBE5]">
+        {/* Bottom Pinned Sign Out Action (Matching Image 2 Bottom Left) */}
+        <div className="p-4 pb-6 border-t border-white/10 bg-[#05170F]/50">
           <button
             onClick={handleLogout}
-            className="w-full flex items-center gap-3 px-4 py-2.5 rounded-2xl text-xs font-bold uppercase tracking-wider text-red-700 bg-red-50/70 hover:bg-red-100 hover:text-red-800 border border-red-200/60 transition"
+            className="flex items-center gap-3 px-4 py-3 text-xs font-bold uppercase tracking-wider text-rose-400 hover:text-rose-300 hover:bg-white/10 rounded-full transition-all duration-150 w-full"
           >
-            <LogOut className="w-4 h-4" />
-            <span>Logout</span>
+            <LogOut className="w-4 h-4 text-rose-400 shrink-0" />
+            <span>Sign Out</span>
           </button>
         </div>
       </aside>
 
       {/* Main Content Area */}
       <div className="flex-1 flex flex-col min-w-0">
-        {/* Top Header Bar (Matching Reference Image 2) */}
-        <header className="h-16 bg-white border-b border-[#E2EBE5] px-4 sm:px-8 flex items-center justify-between sticky top-0 z-30 shadow-sm">
-          {/* Left: Mobile Toggle & Clock Pill */}
+        {/* Top Header Bar (Breadcrumbs on Left, Role Pill & Store Link on Right) */}
+        <header className="h-16 bg-white border-b border-[#E2EBE5] px-4 sm:px-8 flex items-center justify-between sticky top-0 z-30 shadow-xs">
+          {/* Left: Mobile Toggle & Breadcrumb Navigation */}
           <div className="flex items-center gap-3">
             <button
               onClick={() => setIsMobileNavOpen(!isMobileNavOpen)}
               className="lg:hidden p-2 rounded-full bg-[#F4F7F5] border border-[#E2EBE5] text-[#526458] hover:text-[#111814]"
+              aria-label="Open navigation menu"
             >
               <Menu className="w-5 h-5" />
             </button>
 
-            {/* Dynamic Clock Indicator */}
-            <div className="hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FAFCFA] border border-[#E2EBE5] text-xs text-[#526458] shadow-sm">
-              <Clock className="w-3.5 h-3.5 text-[#07552B]" />
-              <span className="font-bold text-[10px] tracking-wider text-[#111814] uppercase">Admin Portal</span>
-              <span className="font-mono text-xs font-bold text-[#07552B] pl-1 border-l border-[#E2EBE5]">
-                {currentTime || '09:00:00 AM'}
-              </span>
+            {/* Breadcrumb Navigation: ⌂ > Admin > ActiveSection */}
+            <div className="flex items-center gap-2 text-xs text-[#526458] font-medium">
+              <Link
+                to="/admin/dashboard"
+                className="hover:text-[#07552B] transition flex items-center p-1 rounded-md hover:bg-[#F4F7F5]"
+                title="Go to Dashboard"
+              >
+                <Home className="w-3.5 h-3.5" />
+              </Link>
+              <ChevronRight className="w-3 h-3 text-[#D0DDD4]" />
+              <span className="text-[#526458]">Admin</span>
+              <ChevronRight className="w-3 h-3 text-[#D0DDD4]" />
+              <span className="font-black text-[#111814]">{activeLabel}</span>
             </div>
           </div>
 
-          {/* Right: Live Store Link & Admin User Capsule */}
+          {/* Right: Live Store Link & System Administrator Pill (Reference Image 2 Top Right) */}
           <div className="flex items-center gap-3">
-            {/* Live Store Pill */}
+            {/* Storefront Link Pill */}
             <Link
               to="/"
               target="_blank"
-              className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#EBF3ED] text-[#07552B] border border-[#D0DDD4] text-xs font-bold hover:bg-[#d8e8dc] transition shadow-sm"
-              title="View Public Storefront"
+              className="hidden sm:flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#EBF3ED] border border-[#D0DDD4] text-[#07552B] text-xs font-bold hover:bg-[#d8e8dc] transition shadow-xs"
+              title="Open Public Storefront in new tab"
             >
               <span className="w-2 h-2 rounded-full bg-[#07552B] animate-pulse" />
-              <span className="hidden sm:inline">Steels Store Live</span>
-              <ExternalLink className="w-3.5 h-3.5" />
+              <span>Steels Store Live</span>
+              <ExternalLink className="w-3 h-3" />
             </Link>
 
-            {/* User Profile Chip */}
-            <div className="flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-[#FAFCFA] border border-[#E2EBE5] shadow-sm">
-              <div className="w-7 h-7 rounded-full bg-[#07552B] text-white flex items-center justify-center font-black text-xs">
-                {user?.name ? user.name.charAt(0).toUpperCase() : 'A'}
-              </div>
-              <div className="flex flex-col text-left pr-1">
-                <span className="text-xs font-bold text-[#111814] leading-tight truncate max-w-[120px]">
-                  {user?.name || 'Steels Admin'}
-                </span>
-                <span className="text-[9px] font-bold text-[#07552B] tracking-wider uppercase leading-tight font-mono">
-                  {user?.role || 'SUPER ADMIN'}
-                </span>
-              </div>
+            {/* System Administrator Role Capsule */}
+            <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#061B12] text-white text-xs font-bold shadow-sm">
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+              <span className="tracking-wide">{user?.name || 'System Administrator'}</span>
             </div>
           </div>
         </header>
@@ -182,53 +186,62 @@ export const AdminLayout: React.FC = () => {
           <div className="fixed inset-0 z-40 lg:hidden">
             <div
               onClick={() => setIsMobileNavOpen(false)}
-              className="fixed inset-0 bg-black/40 backdrop-blur-sm"
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm"
             />
-            <div className="fixed left-0 top-0 bottom-0 w-4/5 max-w-xs bg-white border-r border-[#E2EBE5] p-5 flex flex-col justify-between z-50 shadow-xl">
+            <div className="fixed left-0 top-0 bottom-0 w-4/5 max-w-xs bg-[#061B12] p-5 flex flex-col justify-between z-50 shadow-2xl">
               <div>
-                <div className="flex items-center justify-between pb-4 border-b border-[#E2EBE5]">
-                  <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-xl bg-[#07552B] text-white flex items-center justify-center font-black">
-                      <Logo variant="dark" showText={false} size="sm" />
+                <div className="flex items-center justify-between pb-4 border-b border-white/10">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center p-1.5 shadow-sm">
+                      <Logo variant="light" showText={false} size="sm" />
                     </div>
-                    <span className="font-black text-base uppercase text-[#111814]">Steels</span>
+                    <span className="font-black text-base text-white uppercase">Steels</span>
                   </div>
-                  <button onClick={() => setIsMobileNavOpen(false)} className="text-[#526458] hover:text-[#111814]">
+                  <button
+                    onClick={() => setIsMobileNavOpen(false)}
+                    className="text-emerald-200 hover:text-white p-1"
+                  >
                     <X className="w-5 h-5" />
                   </button>
                 </div>
-                <div className="mt-4 px-2 text-[10px] font-bold uppercase tracking-widest text-[#526458]">
-                  General Navigation
-                </div>
-                <nav className="mt-2 space-y-1">
+
+                <nav className="mt-6 space-y-2">
                   {navItems.map((item) => {
                     const Icon = item.icon;
-                    const isActive = location.pathname === item.href;
+                    const isActive =
+                      location.pathname === item.href ||
+                      (item.href !== '/admin/dashboard' && location.pathname.startsWith(item.href));
                     return (
                       <Link
                         key={item.label}
                         to={item.href}
                         onClick={() => setIsMobileNavOpen(false)}
-                        className={`flex items-center gap-3 px-4 py-2.5 rounded-2xl text-xs font-semibold uppercase tracking-wider ${
+                        className={`flex items-center justify-between px-4 py-3.5 rounded-full text-xs transition ${
                           isActive
-                            ? 'bg-[#07552B] text-white font-bold'
-                            : 'text-[#526458] hover:text-[#111814] hover:bg-[#F4F7F5]'
+                            ? 'bg-white text-[#061B12] font-black shadow-lg'
+                            : 'text-emerald-100/75 hover:text-white hover:bg-white/10 font-semibold'
                         }`}
                       >
-                        <Icon className="w-4 h-4" />
-                        <span>{item.label}</span>
+                        <div className="flex items-center gap-3">
+                          <Icon className={`w-4 h-4 ${isActive ? 'text-[#07552B]' : 'text-emerald-400'}`} />
+                          <span>{item.label}</span>
+                        </div>
+                        {isActive && <span className="w-2 h-2 rounded-full bg-[#07552B]" />}
                       </Link>
                     );
                   })}
                 </nav>
               </div>
 
-              <button
-                onClick={handleLogout}
-                className="w-full py-2.5 rounded-full bg-red-50 border border-red-200 text-red-700 text-xs font-bold uppercase hover:bg-red-100 transition"
-              >
-                Logout
-              </button>
+              <div className="pt-4 border-t border-white/10">
+                <button
+                  onClick={handleLogout}
+                  className="flex items-center gap-2.5 px-4 py-3 text-xs font-bold uppercase tracking-wider text-rose-400 hover:text-rose-300 w-full"
+                >
+                  <LogOut className="w-4 h-4 text-rose-400" />
+                  <span>Sign Out</span>
+                </button>
+              </div>
             </div>
           </div>
         )}
@@ -241,4 +254,3 @@ export const AdminLayout: React.FC = () => {
     </div>
   );
 };
-

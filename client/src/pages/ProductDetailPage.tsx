@@ -265,11 +265,11 @@ export const ProductDetailPage: React.FC = () => {
               <div className="p-5 rounded-2xl bg-white border border-[#E2EBE5] space-y-3 shadow-sm">
                 <div className="flex justify-between items-center">
                   <span className="text-xs font-bold uppercase tracking-wider text-[#07552B]">
-                    Select Dimension / Grade Variant:
+                    Select Size & Specification:
                   </span>
                   {selectedVariant && (
                     <span className="text-xs text-[#526458] font-mono">
-                      SKU: {selectedVariant.sku || 'N/A'}
+                      Item Code: {selectedVariant.sku || 'N/A'}
                     </span>
                   )}
                 </div>

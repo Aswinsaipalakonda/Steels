@@ -99,9 +99,9 @@ export const RequestQuotePage: React.FC = () => {
                   <FileText className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-[#111814] uppercase">Original Test Certificates (MTC)</h4>
+                  <h4 className="text-sm font-bold text-[#111814] uppercase">Official Quality Certificate</h4>
                   <p className="text-xs text-[#526458] mt-0.5">
-                    Heat number and batch matched physical & chemical Mill Test Certificates with every delivery.
+                    Verified quality inspection and manufacturer test reports included with every delivery.
                   </p>
                 </div>
               </div>

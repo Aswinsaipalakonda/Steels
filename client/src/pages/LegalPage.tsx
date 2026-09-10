@@ -50,16 +50,16 @@ export const LegalPage: React.FC<{ type: 'privacy' | 'terms' }> = ({ type }) => 
               </section>
 
               <section className="space-y-2">
-                <h3 className="text-base font-bold text-[#111814] uppercase">2. Weighment & Tolerances</h3>
+                <h3 className="text-base font-bold text-[#111814] uppercase">2. Certified Weighing Guarantee</h3>
                 <p>
-                  Dispatches are invoiced on the basis of certified electronic weighbridge gross and tare slips issued at our stockyards or primary mill rolling plants. Standard rolling tolerances conform to BIS 1786 and IS 2062 specifications.
+                  Every delivery is invoiced strictly on the basis of certified electronic weighbridge receipts issued at our facility. All steel dimensions conform fully to national building safety standards.
                 </p>
               </section>
 
               <section className="space-y-2">
-                <h3 className="text-base font-bold text-[#111814] uppercase">3. Inspection & MTC</h3>
+                <h3 className="text-base font-bold text-[#111814] uppercase">3. Quality Inspection & Certificates</h3>
                 <p>
-                  Physical and chemical Mill Test Certificates (MTC) are furnished with each consignment. Third-party inspection by agencies (e.g. SGS, Bureau Veritas) must be requested at the time of quotation.
+                  Official Manufacturer Quality Certificates verifying genuine strength and pure steel composition are furnished with each shipment. Independent third-party inspection can also be arranged upon request.
                 </p>
               </section>
             </>

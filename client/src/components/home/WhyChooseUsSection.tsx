@@ -5,27 +5,27 @@ export const WhyChooseUsSection: React.FC = () => {
   const points = [
     {
       icon: ShieldCheck,
-      title: '100% Primary Mill Certified',
+      title: '100% Genuine Certified Steel',
       description:
-        'All TMT rebars and structural members are sourced directly from integrated primary producers. No re-rolled or secondary scrap steel.',
+        'All construction steel rebars and structural beams are sourced directly from top brand manufacturers. Zero compromise on strength.',
     },
     {
       icon: Scale,
-      title: 'Precision Weighbridge Accuracy',
+      title: 'Guaranteed Accurate Weighing',
       description:
-        'Digital computerized weighbridge certification with every dispatch to guarantee gross, tare, and net weights with zero discrepancy.',
+        'Certified computerized weighing slips provided with every delivery so you receive exactly what you ordered with full transparency.',
     },
     {
       icon: Truck,
-      title: 'Scheduled Site Delivery',
+      title: 'On-Time Project Site Delivery',
       description:
-        'Dedicated fleet logistics ensuring synchronized phased deliveries directly to project sites, highway corridors, and metro yards.',
+        'Reliable fleet logistics ensuring prompt, hassle-free deliveries directly to your construction site, workshop, or project location.',
     },
     {
       icon: FileSpreadsheet,
-      title: 'Mill Test Certificates (MTC)',
+      title: 'Official Quality Certificates',
       description:
-        'Original batch-wise chemical composition and mechanical test certificates (yield, tensile, elongation) delivered with every invoice.',
+        'Authentic factory inspection and quality test certificates delivered with every invoice for complete peace of mind.',
     },
   ];
 
