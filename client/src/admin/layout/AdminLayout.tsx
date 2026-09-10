@@ -53,34 +53,34 @@ export const AdminLayout: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#FAFCFA] text-[#111814] flex font-sans">
-      {/* Sidebar Desktop: Executive Forest-Night Container with Substantial Presence (Reference Image) */}
-      <aside className="hidden lg:flex w-72 bg-[#061B12] flex-col justify-between shrink-0 shadow-2xl z-20 sticky top-0 h-screen border-r border-[#04150E] overflow-y-auto">
+      {/* Sidebar Desktop: Precision Dimensions matching Reference (w-64, 14px/20px Satoshi, py-2 px-3.5, space-y-1) */}
+      <aside className="hidden lg:flex w-64 bg-[#061B12] flex-col justify-between shrink-0 shadow-xl z-20 sticky top-0 h-screen border-r border-[#04150E] overflow-y-auto">
         <div className="flex flex-col">
           {/* Top Brand Header */}
-          <div className="p-6 pb-5 flex items-center gap-3.5 border-b border-white/10">
+          <div className="p-5 pb-4 flex items-center gap-3 border-b border-white/10">
             {/* White Circular Badge with Steels Logo */}
-            <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center p-1.5 shadow-md shrink-0">
+            <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center p-1 shadow-sm shrink-0">
               <img src="/S_logo.png" alt="Steels" className="w-full h-full object-contain" />
             </div>
 
             <div className="flex flex-col min-w-0">
-              <span className="font-black text-lg text-white tracking-tight uppercase leading-none font-sans truncate">
+              <span className="font-black text-base text-white tracking-tight uppercase leading-none font-sans truncate">
                 Steels
               </span>
-              <span className="flex items-center gap-1.5 text-xs font-bold text-emerald-400 tracking-wider uppercase mt-1.5">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+              <span className="flex items-center gap-1.5 text-[10px] font-bold text-emerald-400 tracking-wider uppercase mt-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
                 <span className="truncate">Industrial Supply</span>
               </span>
             </div>
           </div>
 
           {/* Section Header */}
-          <div className="px-6 pt-5 pb-2 text-[11px] font-extrabold tracking-widest text-emerald-100/50 uppercase">
+          <div className="px-4 pt-4 pb-1.5 text-[10px] font-bold tracking-widest text-emerald-100/40 uppercase font-sans">
             General Navigation
           </div>
 
-          {/* Navigation Links: Substantial, comfortable sizing and spacing */}
-          <nav className="px-4 pt-1 space-y-2">
+          {/* Navigation Links: Exactly 14px size, 20px line-height, 4px space-y-1 gap, py-2 px-3.5 */}
+          <nav className="px-3 pt-1 space-y-1">
             {navItems.map((item) => {
               const Icon = item.icon;
               const isActive =
@@ -91,26 +91,24 @@ export const AdminLayout: React.FC = () => {
                 <Link
                   key={item.label}
                   to={item.href}
-                  className={`group relative flex items-center justify-between px-4 py-3 rounded-full text-sm transition-all duration-150 ${
+                  className={`group relative flex items-center justify-between px-3.5 py-2 rounded-full text-[14px] leading-[20px] transition-all duration-150 ${
                     isActive
-                      ? 'bg-white text-[#061B12] font-black shadow-lg'
-                      : 'text-emerald-100/80 hover:text-white hover:bg-white/10 font-semibold'
+                      ? 'bg-white text-[#111814] font-bold shadow-md'
+                      : 'text-emerald-100/70 hover:text-white hover:bg-white/10 font-medium'
                   }`}
                 >
-                  <div className="flex items-center gap-3.5 min-w-0">
+                  <div className="flex items-center gap-3 min-w-0">
                     <Icon
-                      className={`w-5 h-5 shrink-0 transition-colors ${
-                        isActive ? 'text-[#07552B]' : 'text-emerald-400/90 group-hover:text-white'
+                      className={`w-[18px] h-[18px] shrink-0 transition-colors ${
+                        isActive ? 'text-[#07552B]' : 'text-emerald-400/80 group-hover:text-white'
                       }`}
                     />
-                    <span className="truncate tracking-wide">{item.label}</span>
+                    <span className="truncate">{item.label}</span>
                   </div>
 
                   {/* Subtle status indicators / badges */}
-                  {isActive ? (
-                    <span className="w-2 h-2 rounded-full bg-[#07552B] shrink-0" />
-                  ) : item.badge ? (
-                    <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-white/10 text-emerald-300 group-hover:bg-white/20 transition">
+                  {item.badge ? (
+                    <span className="text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-white/10 text-emerald-300 group-hover:bg-white/20 transition">
                       {item.badge}
                     </span>
                   ) : null}
@@ -120,13 +118,13 @@ export const AdminLayout: React.FC = () => {
           </nav>
         </div>
 
-        {/* Bottom Pinned Sign Out Action (Matching Reference Image Bottom Left) */}
-        <div className="p-5 pb-6 border-t border-white/10 mt-auto">
+        {/* Bottom Pinned Sign Out Action (Matching Reference Bottom Left) */}
+        <div className="p-4 pb-5 border-t border-white/10 mt-auto">
           <button
             onClick={handleLogout}
-            className="flex items-center gap-3 px-4 py-3 text-sm font-bold text-rose-400 hover:text-rose-300 hover:bg-rose-500/10 rounded-full transition-colors w-full"
+            className="flex items-center gap-2.5 px-3.5 py-2 text-[14px] leading-[20px] font-semibold text-rose-400 hover:text-rose-300 hover:bg-rose-500/10 rounded-full transition-colors w-full"
           >
-            <LogOut className="w-5 h-5 text-rose-400 shrink-0" />
+            <LogOut className="w-[18px] h-[18px] text-rose-400 shrink-0" />
             <span>Logout</span>
           </button>
         </div>
@@ -208,11 +206,11 @@ export const AdminLayout: React.FC = () => {
                   </button>
                 </div>
 
-                <div className="px-2 pt-5 pb-2 text-[11px] font-extrabold tracking-widest text-emerald-100/50 uppercase">
+                <div className="px-2 pt-4 pb-1.5 text-[10px] font-bold tracking-widest text-emerald-100/40 uppercase font-sans">
                   General Navigation
                 </div>
 
-                <nav className="mt-1 space-y-2">
+                <nav className="mt-1 space-y-1">
                   {navItems.map((item) => {
                     const Icon = item.icon;
                     const isActive =
@@ -223,17 +221,21 @@ export const AdminLayout: React.FC = () => {
                         key={item.label}
                         to={item.href}
                         onClick={() => setIsMobileNavOpen(false)}
-                        className={`flex items-center justify-between px-4 py-3 rounded-full text-sm transition ${
+                        className={`flex items-center justify-between px-3.5 py-2 rounded-full text-[14px] leading-[20px] transition ${
                           isActive
-                            ? 'bg-white text-[#061B12] font-black shadow-lg'
-                            : 'text-emerald-100/80 hover:text-white hover:bg-white/10 font-semibold'
+                            ? 'bg-white text-[#111814] font-bold shadow-md'
+                            : 'text-emerald-100/70 hover:text-white hover:bg-white/10 font-medium'
                         }`}
                       >
-                        <div className="flex items-center gap-3.5">
-                          <Icon className={`w-5 h-5 ${isActive ? 'text-[#07552B]' : 'text-emerald-400'}`} />
+                        <div className="flex items-center gap-3">
+                          <Icon className={`w-[18px] h-[18px] ${isActive ? 'text-[#07552B]' : 'text-emerald-400'}`} />
                           <span>{item.label}</span>
                         </div>
-                        {isActive && <span className="w-2 h-2 rounded-full bg-[#07552B]" />}
+                        {item.badge && (
+                          <span className="text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-white/10 text-emerald-300">
+                            {item.badge}
+                          </span>
+                        )}
                       </Link>
                     );
                   })}
@@ -243,9 +245,9 @@ export const AdminLayout: React.FC = () => {
               <div className="pt-4 border-t border-white/10">
                 <button
                   onClick={handleLogout}
-                  className="flex items-center gap-3 px-4 py-3 text-sm font-bold uppercase tracking-wider text-rose-400 hover:text-rose-300 w-full"
+                  className="flex items-center gap-2.5 px-3.5 py-2 text-[14px] leading-[20px] font-semibold text-rose-400 hover:text-rose-300 hover:bg-rose-500/10 rounded-full transition-colors w-full"
                 >
-                  <LogOut className="w-5 h-5 text-rose-400" />
+                  <LogOut className="w-[18px] h-[18px] text-rose-400" />
                   <span>Logout</span>
                 </button>
               </div>
