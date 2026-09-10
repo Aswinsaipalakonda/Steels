@@ -98,25 +98,25 @@ export const QuickQuoteModal: React.FC<QuickQuoteModalProps> = ({
     >
       {submittedEnquiryNumber ? (
         <div className="text-center py-6">
-          <div className="w-16 h-16 bg-emerald-900/40 border border-emerald-500/40 rounded-full flex items-center justify-center mx-auto mb-4 text-emerald-400">
+          <div className="w-16 h-16 bg-emerald-50 border border-emerald-300 rounded-full flex items-center justify-center mx-auto mb-4 text-emerald-700">
             <CheckCircle2 className="w-8 h-8" />
           </div>
-          <h4 className="text-xl font-bold text-white mb-1">Enquiry #{submittedEnquiryNumber}</h4>
-          <p className="text-sm text-steel-olive max-w-sm mx-auto mb-6">
-            A confirmation SMS & Email has been dispatched. Our steel procurement specialist will connect with you within 2 business hours.
+          <h4 className="text-xl font-bold text-[#03281A] mb-1">Enquiry #{submittedEnquiryNumber}</h4>
+          <p className="text-sm text-[#4B5563] max-w-sm mx-auto mb-6">
+            A confirmation has been recorded. Our steel procurement specialist will connect with you within 2 business hours.
           </p>
 
-          <div className="grid grid-cols-3 gap-2 bg-steel-forest/60 p-3 rounded-xl border border-steel-rich mb-6 text-xs text-left">
-            <div className="flex items-center gap-1.5 text-zinc-300">
-              <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
+          <div className="grid grid-cols-3 gap-2 bg-[#F8FAF7] p-3.5 rounded-2xl border border-[#E2EBE5] mb-6 text-xs text-left">
+            <div className="flex items-center gap-1.5 text-[#03281A] font-semibold">
+              <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
               <span>BIS Certified</span>
             </div>
-            <div className="flex items-center gap-1.5 text-zinc-300">
-              <Clock className="w-4 h-4 text-emerald-400 shrink-0" />
+            <div className="flex items-center gap-1.5 text-[#03281A] font-semibold">
+              <Clock className="w-4 h-4 text-emerald-600 shrink-0" />
               <span>Fast Callback</span>
             </div>
-            <div className="flex items-center gap-1.5 text-zinc-300">
-              <FileCheck className="w-4 h-4 text-emerald-400 shrink-0" />
+            <div className="flex items-center gap-1.5 text-[#03281A] font-semibold">
+              <FileCheck className="w-4 h-4 text-emerald-600 shrink-0" />
               <span>MTC Provided</span>
             </div>
           </div>
@@ -207,10 +207,10 @@ export const QuickQuoteModal: React.FC<QuickQuoteModalProps> = ({
           />
 
           <div className="pt-2">
-            <Button type="submit" variant="primary" className="w-full py-3 text-base" isLoading={isSubmitting}>
+            <Button type="submit" variant="primary" className="w-full py-3.5 text-sm font-bold" isLoading={isSubmitting}>
               Submit Quotation Request
             </Button>
-            <p className="text-[11px] text-center text-steel-olive mt-2">
+            <p className="text-[11px] text-center text-[#697057] mt-2 font-medium">
               Instant sales response • Direct primary mill dispatch • Zero broker markups
             </p>
           </div>

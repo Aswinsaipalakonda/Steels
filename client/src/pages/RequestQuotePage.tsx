@@ -52,55 +52,55 @@ export const RequestQuotePage: React.FC = () => {
   };
 
   return (
-    <div className="py-14 bg-steel-darkest min-h-screen">
+    <div className="py-14 bg-[#FAFCFA] min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           {/* Left Column: Context & Guarantees (5 cols) */}
           <div className="lg:col-span-5 space-y-6">
             <div>
-              <span className="text-xs font-bold uppercase tracking-widest text-emerald-400 block mb-2">
+              <span className="text-xs font-bold uppercase tracking-widest text-[#07552B] block mb-2">
                 Rapid Commercial Pricing
               </span>
-              <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight uppercase leading-tight font-sans">
+              <h1 className="text-3xl sm:text-5xl font-black text-[#111814] tracking-tight uppercase leading-tight font-sans">
                 Request a Steel Quotation
               </h1>
-              <p className="text-sm text-steel-olive mt-3 leading-relaxed">
+              <p className="text-sm text-[#526458] mt-3 leading-relaxed">
                 Submit your commercial steel bill of quantities. Our technical sales estimators calculate direct mill dispatch pricing with certified weighbridge and freight optimization.
               </p>
             </div>
 
             <div className="space-y-4 pt-4">
-              <div className="p-4 rounded-xl bg-steel-forest/60 border border-steel-rich flex items-start gap-3.5">
-                <div className="p-2 rounded-lg bg-steel-primary text-emerald-400 shrink-0">
+              <div className="p-5 rounded-2xl bg-white border border-[#E2EBE5] flex items-start gap-3.5 shadow-sm">
+                <div className="p-2.5 rounded-xl bg-[#EBF3ED] text-[#07552B] border border-[#D0DDD4] shrink-0">
                   <ShieldCheck className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-white uppercase">Direct Mill Rates</h4>
-                  <p className="text-xs text-zinc-400 mt-0.5">
+                  <h4 className="text-sm font-bold text-[#111814] uppercase">Direct Mill Rates</h4>
+                  <p className="text-xs text-[#526458] mt-0.5">
                     Official primary producer pricing from Tata Tiscon, JSW Steel, and SAIL without intermediary broker overheads.
                   </p>
                 </div>
               </div>
 
-              <div className="p-4 rounded-xl bg-steel-forest/60 border border-steel-rich flex items-start gap-3.5">
-                <div className="p-2 rounded-lg bg-steel-primary text-emerald-400 shrink-0">
+              <div className="p-5 rounded-2xl bg-white border border-[#E2EBE5] flex items-start gap-3.5 shadow-sm">
+                <div className="p-2.5 rounded-xl bg-[#EBF3ED] text-[#07552B] border border-[#D0DDD4] shrink-0">
                   <Scale className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-white uppercase">Computerized Weighbridge Slip</h4>
-                  <p className="text-xs text-zinc-400 mt-0.5">
+                  <h4 className="text-sm font-bold text-[#111814] uppercase">Computerized Weighbridge Slip</h4>
+                  <p className="text-xs text-[#526458] mt-0.5">
                     Guaranteed gross and tare electronic weighment slips accompanying every trailer dispatch.
                   </p>
                 </div>
               </div>
 
-              <div className="p-4 rounded-xl bg-steel-forest/60 border border-steel-rich flex items-start gap-3.5">
-                <div className="p-2 rounded-lg bg-steel-primary text-emerald-400 shrink-0">
+              <div className="p-5 rounded-2xl bg-white border border-[#E2EBE5] flex items-start gap-3.5 shadow-sm">
+                <div className="p-2.5 rounded-xl bg-[#EBF3ED] text-[#07552B] border border-[#D0DDD4] shrink-0">
                   <FileText className="w-5 h-5" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-bold text-white uppercase">Original Test Certificates (MTC)</h4>
-                  <p className="text-xs text-zinc-400 mt-0.5">
+                  <h4 className="text-sm font-bold text-[#111814] uppercase">Original Test Certificates (MTC)</h4>
+                  <p className="text-xs text-[#526458] mt-0.5">
                     Heat number and batch matched physical & chemical Mill Test Certificates with every delivery.
                   </p>
                 </div>
@@ -110,16 +110,16 @@ export const RequestQuotePage: React.FC = () => {
 
           {/* Right Column: Form (7 cols) */}
           <div className="lg:col-span-7">
-            <div className="p-6 sm:p-8 rounded-2xl bg-steel-forest/80 border border-steel-accent/40 shadow-2xl">
+            <div className="p-6 sm:p-8 rounded-3xl bg-white border border-[#D0DDD4] shadow-md">
               {submittedRef ? (
                 <div className="text-center py-10">
-                  <div className="w-16 h-16 bg-emerald-900/40 border border-emerald-500/40 rounded-full flex items-center justify-center mx-auto mb-4 text-emerald-400">
+                  <div className="w-16 h-16 bg-[#EBF3ED] border border-[#D0DDD4] rounded-full flex items-center justify-center mx-auto mb-4 text-[#07552B]">
                     <CheckCircle2 className="w-8 h-8" />
                   </div>
-                  <h2 className="text-2xl font-bold text-white mb-1">Quotation Request Registered</h2>
-                  <p className="text-sm font-mono text-emerald-400 mb-4">Reference Number: {submittedRef}</p>
-                  <p className="text-sm text-steel-olive max-w-md mx-auto mb-8">
-                    Thank you, <span className="text-white font-semibold">{formData.customerName}</span>. A commercial quotation is being compiled by our estimating team and will be emailed to <span className="text-white">{formData.email}</span>.
+                  <h2 className="text-2xl font-bold text-[#111814] mb-1">Quotation Request Registered</h2>
+                  <p className="text-sm font-mono text-[#07552B] font-bold mb-4">Reference Number: {submittedRef}</p>
+                  <p className="text-sm text-[#526458] max-w-md mx-auto mb-8">
+                    Thank you, <span className="text-[#111814] font-semibold">{formData.customerName}</span>. A commercial quotation is being compiled by our estimating team and will be emailed to <span className="text-[#111814]">{formData.email}</span>.
                   </p>
                   <Button
                     variant="primary"
@@ -132,7 +132,7 @@ export const RequestQuotePage: React.FC = () => {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
-                  <h3 className="text-lg font-bold text-white uppercase tracking-tight mb-2">
+                  <h3 className="text-lg font-bold text-[#111814] uppercase tracking-tight mb-2">
                     Project Steel Requirements
                   </h3>
 
@@ -227,7 +227,7 @@ export const RequestQuotePage: React.FC = () => {
                     onChange={handleChange}
                   />
 
-                  <Button type="submit" variant="primary" size="lg" className="w-full py-4 text-base font-bold" isLoading={isSubmitting}>
+                  <Button type="submit" variant="primary" size="lg" className="w-full py-4 text-base font-bold shadow-md" isLoading={isSubmitting}>
                     Generate Commercial Quote Request
                   </Button>
                 </form>

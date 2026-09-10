@@ -138,27 +138,27 @@ export const ProductDetailPage: React.FC = () => {
   const currentImage = galleryImages[selectedImageIndex] || galleryImages[0];
 
   return (
-    <div className="py-10 bg-steel-darkest min-h-screen">
+    <div className="py-10 bg-[#FAFCFA] min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Breadcrumb Navigation */}
-        <nav className="flex items-center gap-2 text-xs text-steel-olive mb-6 overflow-x-auto">
-          <Link to="/" className="hover:text-white transition">
+        <nav className="flex items-center gap-2 text-xs text-[#526458] mb-6 overflow-x-auto">
+          <Link to="/" className="hover:text-[#111814] transition">
             Home
           </Link>
           <span>/</span>
-          <Link to="/products" className="hover:text-white transition">
+          <Link to="/products" className="hover:text-[#111814] transition">
             Products
           </Link>
           <span>/</span>
           {product.category && (
             <>
-              <Link to={`/products?category=${product.category.slug}`} className="hover:text-white transition">
+              <Link to={`/products?category=${product.category.slug}`} className="hover:text-[#111814] transition">
                 {product.category.name}
               </Link>
               <span>/</span>
             </>
           )}
-          <span className="text-emerald-400 font-medium truncate">{product.name}</span>
+          <span className="text-[#07552B] font-bold truncate">{product.name}</span>
         </nav>
 
         {/* Top Product Section: Gallery & Overview */}
@@ -166,23 +166,23 @@ export const ProductDetailPage: React.FC = () => {
           {/* Gallery Column (7 cols) */}
           <div className="lg:col-span-7 space-y-4">
             {/* Main Stage Image */}
-            <div className="relative h-[380px] sm:h-[480px] rounded-2xl overflow-hidden bg-steel-forest/60 border border-steel-rich shadow-2xl">
+            <div className="relative h-[380px] sm:h-[480px] rounded-2xl overflow-hidden bg-white border border-[#E2EBE5] shadow-md">
               <img
                 src={currentImage.imageUrl}
                 alt={currentImage.altText || product.name}
                 className="w-full h-full object-cover object-center transition-all duration-300"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-steel-darkest/70 via-transparent to-black/20 pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none" />
 
               {/* Status and Category Chips */}
               <div className="absolute top-4 left-4 flex gap-2">
                 {product.category && (
-                  <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-steel-darkest/90 text-emerald-400 border border-steel-accent/40 backdrop-blur-md">
+                  <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-white/95 text-[#07552B] border border-[#E2EBE5] backdrop-blur-md shadow-sm">
                     {product.category.name}
                   </span>
                 )}
                 {product.brand && (
-                  <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-steel-primary/90 text-white border border-steel-accent/40 backdrop-blur-md">
+                  <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#07552B] text-white border border-[#07552B] backdrop-blur-md shadow-sm">
                     {product.brand.name}
                   </span>
                 )}
@@ -204,8 +204,8 @@ export const ProductDetailPage: React.FC = () => {
                     onClick={() => setSelectedImageIndex(idx)}
                     className={`relative w-20 h-20 rounded-xl overflow-hidden border-2 transition shrink-0 ${
                       idx === selectedImageIndex
-                        ? 'border-emerald-400 ring-2 ring-emerald-400/20'
-                        : 'border-steel-rich hover:border-steel-accent opacity-70 hover:opacity-100'
+                        ? 'border-[#07552B] ring-2 ring-[#07552B]/20'
+                        : 'border-[#E2EBE5] hover:border-[#07552B] opacity-70 hover:opacity-100'
                     }`}
                   >
                     <img src={img.imageUrl} alt={img.altText || ''} className="w-full h-full object-cover" />
@@ -215,10 +215,10 @@ export const ProductDetailPage: React.FC = () => {
             )}
 
             {/* Specifications Details Table */}
-            <div className="mt-8 bg-steel-forest/30 border border-steel-rich rounded-2xl p-6">
+            <div className="mt-8 bg-white border border-[#E2EBE5] rounded-2xl p-6 shadow-sm">
               <div className="flex items-center gap-2 mb-4">
-                <FileText className="w-5 h-5 text-emerald-400" />
-                <h3 className="text-base font-bold text-white uppercase tracking-tight">
+                <FileText className="w-5 h-5 text-[#07552B]" />
+                <h3 className="text-base font-bold text-[#111814] uppercase tracking-tight">
                   Technical Specifications & Compliance
                 </h3>
               </div>
@@ -228,15 +228,15 @@ export const ProductDetailPage: React.FC = () => {
                   {product.specifications.map((spec) => (
                     <div
                       key={spec.id}
-                      className="flex justify-between p-3 rounded-lg bg-steel-darkest/80 border border-steel-rich text-xs"
+                      className="flex justify-between p-3 rounded-xl bg-[#F4F7F5] border border-[#E2EBE5] text-xs"
                     >
-                      <span className="text-steel-olive font-semibold">{spec.specKey}</span>
-                      <span className="text-white font-bold">{spec.specValue}</span>
+                      <span className="text-[#526458] font-semibold">{spec.specKey}</span>
+                      <span className="text-[#111814] font-bold">{spec.specValue}</span>
                     </div>
                   ))}
                 </div>
               ) : (
-                <p className="text-xs text-steel-olive">Detailed mill test certificate available on request.</p>
+                <p className="text-xs text-[#526458]">Detailed mill test certificate available on request.</p>
               )}
             </div>
           </div>
@@ -244,31 +244,31 @@ export const ProductDetailPage: React.FC = () => {
           {/* Configuration & Quotation Form Column (5 cols) */}
           <div className="lg:col-span-5 space-y-6">
             <div>
-              <h1 className="text-2xl sm:text-4xl font-black text-white tracking-tight uppercase leading-tight font-sans">
+              <h1 className="text-2xl sm:text-4xl font-black text-[#111814] tracking-tight uppercase leading-tight font-sans">
                 {product.name}
               </h1>
 
               {product.primarySpecification && (
-                <div className="mt-2.5 flex items-center gap-2 text-sm text-emerald-400 font-semibold">
+                <div className="mt-2.5 flex items-center gap-2 text-sm text-[#07552B] font-semibold">
                   <ShieldCheck className="w-4 h-4 shrink-0" />
                   <span>{product.primarySpecification}</span>
                 </div>
               )}
 
-              <p className="text-sm text-zinc-300 mt-4 leading-relaxed font-normal">
+              <p className="text-sm text-[#526458] mt-4 leading-relaxed font-normal">
                 {product.fullDescription || product.shortDescription}
               </p>
             </div>
 
             {/* Variant Selector */}
             {product.variants && product.variants.length > 0 && (
-              <div className="p-5 rounded-2xl bg-steel-forest/40 border border-steel-rich space-y-3">
+              <div className="p-5 rounded-2xl bg-white border border-[#E2EBE5] space-y-3 shadow-sm">
                 <div className="flex justify-between items-center">
-                  <span className="text-xs font-bold uppercase tracking-wider text-emerald-400">
+                  <span className="text-xs font-bold uppercase tracking-wider text-[#07552B]">
                     Select Dimension / Grade Variant:
                   </span>
                   {selectedVariant && (
-                    <span className="text-xs text-steel-olive font-mono">
+                    <span className="text-xs text-[#526458] font-mono">
                       SKU: {selectedVariant.sku || 'N/A'}
                     </span>
                   )}
@@ -286,13 +286,13 @@ export const ProductDetailPage: React.FC = () => {
                         onClick={() => setSelectedVariant(variant)}
                         className={`p-2.5 rounded-xl text-left border transition text-xs ${
                           isSelected
-                            ? 'bg-steel-accent border-emerald-400 text-white shadow-md'
-                            : 'bg-steel-darkest border-steel-rich text-zinc-300 hover:border-steel-accent/60'
+                            ? 'bg-[#07552B] border-[#07552B] text-white shadow-sm'
+                            : 'bg-[#FAFCFA] border-[#E2EBE5] text-[#111814] hover:border-[#07552B]'
                         }`}
                       >
                         <div className="font-bold truncate">{label}</div>
-                        {variant.grade && <div className="text-[10px] text-zinc-400">{variant.grade}</div>}
-                        {variant.weight && <div className="text-[10px] text-emerald-300">{variant.weight}</div>}
+                        {variant.grade && <div className={`text-[10px] ${isSelected ? 'text-emerald-100' : 'text-[#526458]'}`}>{variant.grade}</div>}
+                        {variant.weight && <div className={`text-[10px] ${isSelected ? 'text-emerald-200' : 'text-[#07552B]'}`}>{variant.weight}</div>}
                       </button>
                     );
                   })}
@@ -301,15 +301,15 @@ export const ProductDetailPage: React.FC = () => {
             )}
 
             {/* Inline Quotation Form Card */}
-            <div className="p-6 rounded-2xl bg-steel-forest border border-steel-accent/40 shadow-2xl">
+            <div className="p-6 rounded-2xl bg-white border border-[#D0DDD4] shadow-md">
               {submittedEnquiryNumber ? (
                 <div className="text-center py-6">
-                  <div className="w-14 h-14 bg-emerald-900/50 border border-emerald-500/40 rounded-full flex items-center justify-center mx-auto mb-4 text-emerald-400">
+                  <div className="w-14 h-14 bg-[#EBF3ED] border border-[#D0DDD4] rounded-full flex items-center justify-center mx-auto mb-4 text-[#07552B]">
                     <CheckCircle2 className="w-7 h-7" />
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-1">Enquiry Registered</h3>
-                  <p className="text-xs font-mono text-emerald-400 mb-3">Ref: {submittedEnquiryNumber}</p>
-                  <p className="text-xs text-steel-olive max-w-xs mx-auto mb-6">
+                  <h3 className="text-xl font-bold text-[#111814] mb-1">Enquiry Registered</h3>
+                  <p className="text-xs font-mono text-[#07552B] font-bold mb-3">Ref: {submittedEnquiryNumber}</p>
+                  <p className="text-xs text-[#526458] max-w-xs mx-auto mb-6">
                     Our sales desk has received your request for {product.name}. A technical quote with current mill dispatch rates will be sent to your email and phone.
                   </p>
                   <Button
@@ -325,10 +325,10 @@ export const ProductDetailPage: React.FC = () => {
               ) : (
                 <form onSubmit={handleSubmitEnquiry} className="space-y-4">
                   <div>
-                    <h3 className="text-base font-bold text-white uppercase tracking-tight">
+                    <h3 className="text-base font-bold text-[#111814] uppercase tracking-tight">
                       Request Instant Commercial Quote
                     </h3>
-                    <p className="text-xs text-steel-olive mt-0.5">
+                    <p className="text-xs text-[#526458] mt-0.5">
                       Selected: {selectedVariant?.name || product.name}
                     </p>
                   </div>
@@ -420,13 +420,13 @@ export const ProductDetailPage: React.FC = () => {
                     Submit Quotation Request
                   </Button>
 
-                  <div className="flex items-center justify-between text-[11px] text-steel-olive pt-1">
+                  <div className="flex items-center justify-between text-[11px] text-[#526458] pt-1">
                     <span className="flex items-center gap-1">
-                      <Clock className="w-3.5 h-3.5 text-emerald-400" />
+                      <Clock className="w-3.5 h-3.5 text-[#07552B]" />
                       <span>Response within 2h</span>
                     </span>
                     <span className="flex items-center gap-1">
-                      <Truck className="w-3.5 h-3.5 text-emerald-400" />
+                      <Truck className="w-3.5 h-3.5 text-[#07552B]" />
                       <span>Direct Mill Dispatch</span>
                     </span>
                   </div>
@@ -438,8 +438,8 @@ export const ProductDetailPage: React.FC = () => {
 
         {/* Related Products Section */}
         {product.relatedProducts && product.relatedProducts.length > 0 && (
-          <div className="mt-20 pt-12 border-t border-steel-rich">
-            <h3 className="text-xl sm:text-2xl font-bold text-white uppercase tracking-tight mb-8">
+          <div className="mt-20 pt-12 border-t border-[#E2EBE5]">
+            <h3 className="text-xl sm:text-2xl font-bold text-[#111814] uppercase tracking-tight mb-8">
               Complementary Products in {product.category?.name}
             </h3>
 
@@ -453,19 +453,19 @@ export const ProductDetailPage: React.FC = () => {
                   <Link
                     key={rel.id}
                     to={`/products/${rel.slug}`}
-                    className="p-4 rounded-xl bg-steel-forest/40 border border-steel-rich hover:border-steel-accent transition group flex flex-col"
+                    className="p-4 rounded-2xl bg-white border border-[#E2EBE5] hover:border-[#07552B] transition group flex flex-col shadow-sm"
                   >
-                    <div className="h-40 rounded-lg overflow-hidden mb-3 bg-zinc-900">
+                    <div className="h-40 rounded-xl overflow-hidden mb-3 bg-zinc-100">
                       <img
                         src={imgUrl}
                         alt={rel.name}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                       />
                     </div>
-                    <h4 className="font-bold text-sm text-white group-hover:text-emerald-400 transition-colors uppercase line-clamp-1">
+                    <h4 className="font-bold text-sm text-[#111814] group-hover:text-[#07552B] transition-colors uppercase line-clamp-1">
                       {rel.name}
                     </h4>
-                    <span className="text-xs text-steel-olive mt-1">View specifications →</span>
+                    <span className="text-xs text-[#526458] mt-1">View specifications →</span>
                   </Link>
                 );
               })}

@@ -11,27 +11,27 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = 'primary', size = 'md', isLoading = false, disabled, children, ...props }, ref) => {
     const baseStyles =
-      'inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-steel-darkest disabled:opacity-50 disabled:cursor-not-allowed select-none active:scale-[0.98]';
+      'inline-flex items-center justify-center font-semibold rounded-full transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white disabled:opacity-50 disabled:cursor-not-allowed select-none active:scale-[0.98] cursor-pointer';
 
     const variants = {
       primary:
-        'bg-steel-accent hover:bg-steel-rich text-white shadow-lg shadow-steel-accent/20 focus:ring-steel-accent border border-emerald-500/30',
+        'bg-[#03281A] hover:bg-[#07552B] text-white shadow-md shadow-[#03281A]/15 focus:ring-[#07552B] border border-[#03281A]',
       secondary:
-        'bg-steel-forest hover:bg-steel-primary text-white border border-steel-accent/30 focus:ring-steel-accent',
+        'bg-[#F0F5F2] hover:bg-[#E3EDE7] text-[#03281A] border border-[#D0DDD4] focus:ring-[#07552B]',
       outline:
-        'border border-steel-olive/40 hover:border-steel-accent text-steel-purewhite hover:bg-steel-primary/30 focus:ring-steel-accent',
+        'bg-white border-2 border-[#03281A] hover:bg-[#F0F5F2] text-[#03281A] focus:ring-[#07552B] shadow-sm',
       accent:
-        'bg-emerald-600 hover:bg-emerald-500 text-white font-semibold shadow-md focus:ring-emerald-400',
+        'bg-[#07552B] hover:bg-[#03281A] text-white shadow-md focus:ring-[#07552B]',
       ghost:
-        'text-steel-olive hover:text-white hover:bg-steel-forest/50 focus:ring-steel-accent',
+        'text-[#03281A] hover:bg-[#F0F5F2] focus:ring-[#07552B]',
       danger:
-        'bg-red-600 hover:bg-red-700 text-white focus:ring-red-500',
+        'bg-red-600 hover:bg-red-700 text-white focus:ring-red-500 shadow-sm',
     };
 
     const sizes = {
-      sm: 'text-xs px-3 py-1.5 gap-1.5',
-      md: 'text-sm px-4 py-2.5 gap-2',
-      lg: 'text-base px-6 py-3.5 gap-2.5 font-semibold',
+      sm: 'text-xs px-4 py-2 gap-1.5',
+      md: 'text-sm px-5 py-2.5 gap-2',
+      lg: 'text-base px-7 py-3.5 gap-2.5 font-bold',
     };
 
     return (

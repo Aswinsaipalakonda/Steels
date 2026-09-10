@@ -16,10 +16,12 @@ export default {
           olive: '#697057',        // Muted Olive
           offwhite: '#F4F6F3',     // Off White light background
           purewhite: '#FFFFFF',
-          border: 'rgba(7, 85, 43, 0.18)',
-          card: '#0a1d14',
-          cardlight: '#ffffff',
-          charcoal: '#111814',
+          lightbg: '#FAFCFA',      // Crisp light canvas
+          lightcard: '#FFFFFF',    // Clean white cards
+          lightborder: '#E2EBE5',  // Subtle green-tinted light border
+          border: 'rgba(7, 85, 43, 0.16)',
+          charcoal: '#111814',     // High contrast dark text
+          muted: '#4B5563',        // Secondary readable text
         }
       },
       fontFamily: {

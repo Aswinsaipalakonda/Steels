@@ -46,7 +46,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ slides }) => {
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
 
-  // Auto-advance slides every 5 seconds
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlideIndex((prev) => (prev + 1) % activeSlides.length);
@@ -58,7 +57,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ slides }) => {
   const currentSlide = activeSlides[currentSlideIndex];
 
   return (
-    <div className="relative min-h-[85vh] sm:min-h-[90vh] flex items-center overflow-hidden bg-steel-darkest">
+    <div className="relative min-h-[85vh] sm:min-h-[90vh] flex items-center overflow-hidden bg-[#02150C]">
       {/* Background Image Carousel with motion */}
       <AnimatePresence mode="wait">
         <motion.div
@@ -74,9 +73,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ slides }) => {
             alt={currentSlide.title}
             className="w-full h-full object-cover object-center"
           />
-          {/* Deep Dark Forest Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-steel-darkest via-steel-darkest/90 to-steel-forest/60" />
-          <div className="absolute inset-0 bg-gradient-to-t from-steel-darkest via-transparent to-steel-darkest/60" />
+          {/* Refined Deep Forest & Black Industrial Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#02150C]/95 via-[#02150C]/85 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#02150C] via-transparent to-[#02150C]/50" />
         </motion.div>
       </AnimatePresence>
 
@@ -88,9 +87,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ slides }) => {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-steel-forest/80 border border-steel-accent/60 text-xs font-semibold text-emerald-400 mb-6 backdrop-blur-sm"
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-emerald-400/30 text-xs font-bold text-emerald-300 mb-6 backdrop-blur-md"
           >
-            <ShieldCheck className="w-4 h-4" />
+            <ShieldCheck className="w-4 h-4 text-emerald-400" />
             <span>BIS Certified • IS 1786:2008 & IS 2062:2011 Grade Materials</span>
           </motion.div>
 
@@ -103,11 +102,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ slides }) => {
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.5 }}
             >
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.1] uppercase mb-5 font-sans">
+              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-[1.1] uppercase mb-5 font-sans">
                 {currentSlide.title}
               </h1>
 
-              <p className="text-base sm:text-lg text-zinc-300 mb-8 leading-relaxed max-w-2xl font-normal">
+              <p className="text-base sm:text-lg text-zinc-200 mb-8 leading-relaxed max-w-2xl font-normal">
                 {currentSlide.subtitle}
               </p>
             </motion.div>
@@ -121,7 +120,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ slides }) => {
             className="flex flex-wrap items-center gap-4"
           >
             <Link to={currentSlide.primaryCtaLink || '/products'}>
-              <Button variant="primary" size="lg" className="gap-2">
+              <Button
+                variant="accent"
+                size="lg"
+                className="gap-2 bg-emerald-500 hover:bg-emerald-400 text-[#02150C] font-black rounded-full shadow-lg"
+              >
                 <span>{currentSlide.primaryCtaText || 'Explore Products'}</span>
                 <ArrowRight className="w-4 h-4" />
               </Button>
@@ -131,25 +134,25 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ slides }) => {
               variant="outline"
               size="lg"
               onClick={() => setIsQuoteModalOpen(true)}
-              className="bg-steel-forest/60 backdrop-blur-sm border-steel-accent/40 text-white hover:bg-steel-forest"
+              className="bg-white/10 hover:bg-white text-white hover:text-[#03281A] border-2 border-white/60 hover:border-white rounded-full backdrop-blur-sm transition-colors"
             >
               {currentSlide.secondaryCtaText || 'Request a Quote'}
             </Button>
           </motion.div>
 
-          {/* Quick Metrics Bar on Mobile / Desktop */}
-          <div className="mt-12 pt-8 border-t border-steel-rich/60 grid grid-cols-3 gap-4 max-w-lg">
+          {/* Metrics Bar */}
+          <div className="mt-12 pt-8 border-t border-white/15 grid grid-cols-3 gap-4 max-w-lg">
             <div>
-              <span className="block text-xl sm:text-2xl font-bold text-white">500k+</span>
-              <span className="text-xs text-steel-olive">Metric Tons Supplied</span>
+              <span className="block text-2xl sm:text-3xl font-black text-white">500k+</span>
+              <span className="text-xs text-zinc-300 font-medium">Metric Tons Supplied</span>
             </div>
             <div>
-              <span className="block text-xl sm:text-2xl font-bold text-white">1,250+</span>
-              <span className="text-xs text-steel-olive">Active Projects</span>
+              <span className="block text-2xl sm:text-3xl font-black text-white">1,250+</span>
+              <span className="text-xs text-zinc-300 font-medium">Active Projects</span>
             </div>
             <div>
-              <span className="block text-xl sm:text-2xl font-bold text-white">100%</span>
-              <span className="text-xs text-steel-olive">Primary Mill Tested</span>
+              <span className="block text-2xl sm:text-3xl font-black text-white">100%</span>
+              <span className="text-xs text-zinc-300 font-medium">Primary Mill Tested</span>
             </div>
           </div>
         </div>
@@ -162,7 +165,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ slides }) => {
             onClick={() =>
               setCurrentSlideIndex((prev) => (prev - 1 + activeSlides.length) % activeSlides.length)
             }
-            className="p-2 rounded-lg bg-steel-forest/80 border border-steel-rich text-zinc-300 hover:text-white hover:bg-steel-primary transition"
+            className="p-2.5 rounded-full bg-white/20 hover:bg-white text-white hover:text-[#03281A] transition backdrop-blur-md"
             aria-label="Previous slide"
           >
             <ChevronLeft className="w-5 h-5" />
@@ -172,8 +175,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ slides }) => {
               <button
                 key={idx}
                 onClick={() => setCurrentSlideIndex(idx)}
-                className={`h-1.5 rounded-full transition-all duration-300 ${
-                  idx === currentSlideIndex ? 'w-6 bg-emerald-400' : 'w-2 bg-zinc-600'
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  idx === currentSlideIndex ? 'w-6 bg-emerald-400' : 'w-2 bg-white/40'
                 }`}
                 aria-label={`Slide ${idx + 1}`}
               />
@@ -181,7 +184,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ slides }) => {
           </div>
           <button
             onClick={() => setCurrentSlideIndex((prev) => (prev + 1) % activeSlides.length)}
-            className="p-2 rounded-lg bg-steel-forest/80 border border-steel-rich text-zinc-300 hover:text-white hover:bg-steel-primary transition"
+            className="p-2.5 rounded-full bg-white/20 hover:bg-white text-white hover:text-[#03281A] transition backdrop-blur-md"
             aria-label="Next slide"
           >
             <ChevronRight className="w-5 h-5" />
@@ -189,7 +192,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ slides }) => {
         </div>
       )}
 
-      {/* Quote Modal */}
       <QuickQuoteModal isOpen={isQuoteModalOpen} onClose={() => setIsQuoteModalOpen(false)} />
     </div>
   );

@@ -354,7 +354,7 @@ async function main() {
   // 6. Website Settings
   await prisma.websiteSetting.createMany({
     data: [
-      { key: 'company_name', value: 'Apex Steel Industries Ltd.', group: SettingGroup.GENERAL },
+      { key: 'company_name', value: 'Steels Industrial Supply Ltd.', group: SettingGroup.GENERAL },
       { key: 'company_tagline', value: 'Prime Quality Industrial Steel Distribution', group: SettingGroup.GENERAL },
       { key: 'contact_phone', value: '+91 98765 43210', group: SettingGroup.CONTACT },
       { key: 'contact_email', value: 'sales@steelplatform.com', group: SettingGroup.CONTACT },

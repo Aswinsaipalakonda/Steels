@@ -7,21 +7,21 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
 
 export const Badge: React.FC<BadgeProps> = ({ className, variant = 'default', children, ...props }) => {
   const variants = {
-    new: 'bg-emerald-950/80 text-emerald-300 border-emerald-700/50',
-    contacted: 'bg-blue-950/80 text-blue-300 border-blue-700/50',
-    quotation: 'bg-amber-950/80 text-amber-300 border-amber-700/50',
-    confirmed: 'bg-teal-950/80 text-teal-300 border-teal-700/50',
-    completed: 'bg-green-950/80 text-green-300 border-green-600/50',
-    cancelled: 'bg-red-950/80 text-red-300 border-red-700/50',
-    available: 'bg-emerald-950 text-emerald-400 border-emerald-800',
-    limited: 'bg-amber-950 text-amber-400 border-amber-800',
-    default: 'bg-steel-rich/60 text-steel-offwhite border-steel-accent/40',
+    new: 'bg-emerald-50 text-emerald-800 border-emerald-300',
+    contacted: 'bg-sky-50 text-sky-800 border-sky-300',
+    quotation: 'bg-amber-50 text-amber-900 border-amber-300',
+    confirmed: 'bg-teal-50 text-teal-900 border-teal-300',
+    completed: 'bg-green-100 text-green-900 border-green-400',
+    cancelled: 'bg-red-50 text-red-800 border-red-300',
+    available: 'bg-emerald-50 text-emerald-800 border-emerald-300',
+    limited: 'bg-amber-50 text-amber-800 border-amber-300',
+    default: 'bg-[#F0F5F2] text-[#03281A] border-[#D0DDD4]',
   };
 
   return (
     <span
       className={cn(
-        'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border uppercase tracking-wider',
+        'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold border uppercase tracking-wider shadow-xs',
         variants[variant],
         className
       )}

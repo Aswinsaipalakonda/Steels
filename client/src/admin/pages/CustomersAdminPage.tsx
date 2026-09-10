@@ -35,16 +35,16 @@ export const CustomersAdminPage: React.FC = () => {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-black text-white uppercase tracking-tight font-sans">
+          <h1 className="text-2xl font-black text-[#111814] uppercase tracking-tight font-sans">
             Customer Leads Directory
           </h1>
-          <p className="text-xs text-steel-olive mt-1">
+          <p className="text-xs text-[#526458] mt-1">
             Aggregated contractor, builder, and industrial buyer leads captured through quotation submissions.
           </p>
         </div>
       </div>
 
-      <div className="p-4 rounded-xl bg-steel-forest/60 border border-steel-rich flex gap-3 max-w-md">
+      <div className="p-4 rounded-2xl bg-white border border-[#E2EBE5] flex gap-3 max-w-md shadow-sm">
         <Input
           placeholder="Search by customer name, phone, or firm..."
           value={search}
@@ -55,9 +55,9 @@ export const CustomersAdminPage: React.FC = () => {
         </Button>
       </div>
 
-      <div className="rounded-2xl bg-steel-forest/40 border border-steel-rich overflow-hidden shadow-xl">
+      <div className="rounded-2xl bg-white border border-[#E2EBE5] overflow-hidden shadow-sm">
         <table className="w-full text-left text-xs">
-          <thead className="border-b border-steel-rich text-steel-olive uppercase font-bold text-[10px] bg-steel-forest/80">
+          <thead className="border-b border-[#E2EBE5] text-[#526458] uppercase font-bold text-[10px] bg-[#F4F7F5]">
             <tr>
               <th className="p-4">Customer</th>
               <th className="p-4">Contact Info</th>
@@ -66,36 +66,36 @@ export const CustomersAdminPage: React.FC = () => {
               <th className="p-4 text-right">Last Activity</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-steel-rich/60">
+          <tbody className="divide-y divide-[#E2EBE5]">
             {customers.map((c) => (
-              <tr key={c.id} className="hover:bg-steel-darkest/60 transition">
-                <td className="p-4 font-bold text-white text-sm">{c.name}</td>
+              <tr key={c.id} className="hover:bg-[#F4F7F5] transition">
+                <td className="p-4 font-bold text-[#111814] text-sm">{c.name}</td>
                 <td className="p-4 space-y-0.5">
-                  <div className="flex items-center gap-1.5 text-zinc-300">
-                    <Phone className="w-3 h-3 text-emerald-400" />
+                  <div className="flex items-center gap-1.5 text-[#111814]">
+                    <Phone className="w-3 h-3 text-[#07552B]" />
                     <span>{c.phone}</span>
                   </div>
-                  <div className="flex items-center gap-1.5 text-zinc-400">
-                    <Mail className="w-3 h-3 text-steel-olive" />
+                  <div className="flex items-center gap-1.5 text-[#526458]">
+                    <Mail className="w-3 h-3 text-[#526458]" />
                     <span>{c.email}</span>
                   </div>
                 </td>
-                <td className="p-4 text-zinc-300 font-medium">
+                <td className="p-4 text-[#111814] font-medium">
                   {c.company ? (
                     <div className="flex items-center gap-1.5">
-                      <Building className="w-3.5 h-3.5 text-steel-olive shrink-0" />
+                      <Building className="w-3.5 h-3.5 text-[#526458] shrink-0" />
                       <span>{c.company}</span>
                     </div>
                   ) : (
-                    <span className="text-steel-olive">Individual</span>
+                    <span className="text-[#526458]">Individual</span>
                   )}
                 </td>
                 <td className="p-4 text-center">
-                  <span className="px-2.5 py-1 rounded-full bg-steel-darkest border border-steel-rich font-mono font-bold text-emerald-400">
+                  <span className="px-3 py-1 rounded-full bg-[#EBF3ED] border border-[#D0DDD4] font-mono font-bold text-[#07552B]">
                     {c._count?.enquiries || 0}
                   </span>
                 </td>
-                <td className="p-4 text-right text-zinc-400 text-[11px]">
+                <td className="p-4 text-right text-[#526458] text-[11px]">
                   {formatDate(c.updatedAt)}
                 </td>
               </tr>

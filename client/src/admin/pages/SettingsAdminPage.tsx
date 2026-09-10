@@ -7,7 +7,7 @@ import { useToast } from '../../context/ToastContext';
 export const SettingsAdminPage: React.FC = () => {
   const { success, error } = useToast();
   const [settings, setSettings] = useState<Record<string, string>>({
-    company_name: 'Apex Steel Industries Ltd.',
+    company_name: 'Steels Industrial Supply Ltd.',
     contact_phone: '+91 98765 43210',
     contact_email: 'sales@steelplatform.com',
     contact_address: 'Plot 42, Heavy Industrial Area, Steel Hub Phase II, Mumbai - 400072',
@@ -49,16 +49,16 @@ export const SettingsAdminPage: React.FC = () => {
   return (
     <div className="space-y-6 max-w-4xl">
       <div>
-        <h1 className="text-2xl font-black text-white uppercase tracking-tight font-sans">
+        <h1 className="text-2xl font-black text-[#111814] uppercase tracking-tight font-sans">
           Company Details & Statistics
         </h1>
-        <p className="text-xs text-steel-olive mt-1">
+        <p className="text-xs text-[#526458] mt-1">
           Configure global contact information, yard addresses, and trust metrics displayed on the public site.
         </p>
       </div>
 
-      <form onSubmit={handleSave} className="p-8 rounded-2xl bg-steel-forest/50 border border-steel-rich space-y-6">
-        <h3 className="text-sm font-bold uppercase tracking-wider text-emerald-400 border-b border-steel-rich pb-2">
+      <form onSubmit={handleSave} className="p-8 rounded-2xl bg-white border border-[#E2EBE5] shadow-sm space-y-6">
+        <h3 className="text-sm font-bold uppercase tracking-wider text-[#07552B] border-b border-[#E2EBE5] pb-2">
           Corporate Identity & Sales Desk Contact
         </h3>
 
@@ -94,7 +94,7 @@ export const SettingsAdminPage: React.FC = () => {
           onChange={(e) => handleChange('contact_address', e.target.value)}
         />
 
-        <h3 className="text-sm font-bold uppercase tracking-wider text-emerald-400 border-b border-steel-rich pb-2 pt-4">
+        <h3 className="text-sm font-bold uppercase tracking-wider text-[#07552B] border-b border-[#E2EBE5] pb-2 pt-4">
           Homepage Statistics & Impact Counters
         </h3>
 
@@ -116,7 +116,7 @@ export const SettingsAdminPage: React.FC = () => {
           />
         </div>
 
-        <div className="pt-4 border-t border-steel-rich">
+        <div className="pt-4 border-t border-[#E2EBE5]">
           <Button type="submit" variant="primary" size="lg" isLoading={isSaving}>
             Save All Settings
           </Button>

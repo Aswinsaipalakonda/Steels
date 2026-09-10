@@ -112,7 +112,7 @@ export const HeroSlidesAdminPage: React.FC = () => {
           </p>
         </div>
 
-        <Button variant="primary" onClick={handleOpenAdd} className="gap-2 self-start sm:self-auto">
+        <Button variant="primary" onClick={handleOpenAdd} className="gap-2 self-start sm:self-auto shadow-md">
           <Plus className="w-4 h-4" />
           <span>Add Hero Slide</span>
         </Button>
@@ -122,42 +122,42 @@ export const HeroSlidesAdminPage: React.FC = () => {
         {slides.map((slide) => (
           <div
             key={slide.id}
-            className="rounded-2xl bg-steel-forest/50 border border-steel-rich overflow-hidden shadow-xl flex flex-col"
+            className="rounded-2xl bg-white border border-[#E2EBE5] overflow-hidden shadow-sm flex flex-col"
           >
-            <div className="relative h-48 bg-zinc-900 overflow-hidden">
+            <div className="relative h-48 bg-zinc-100 overflow-hidden">
               <img src={slide.bgImageUrl} alt={slide.title} className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-steel-darkest via-transparent to-black/30" />
-              <div className="absolute top-3 left-3 bg-steel-darkest/90 px-2.5 py-0.5 rounded text-[10px] font-mono text-emerald-400 border border-steel-accent/40">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+              <div className="absolute top-3 left-3 bg-white/95 px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold text-[#07552B] border border-[#E2EBE5] shadow-sm">
                 Order #{slide.displayOrder}
               </div>
             </div>
 
             <div className="p-5 flex-1 flex flex-col justify-between space-y-3">
               <div>
-                <h3 className="font-bold text-white text-base uppercase tracking-tight leading-snug">
+                <h3 className="font-bold text-[#111814] text-base uppercase tracking-tight leading-snug">
                   {slide.title}
                 </h3>
-                <p className="text-xs text-zinc-400 mt-2 line-clamp-2 leading-relaxed font-normal">
+                <p className="text-xs text-[#526458] mt-2 line-clamp-2 leading-relaxed font-normal">
                   {slide.subtitle}
                 </p>
-                <div className="flex gap-2 mt-3 text-[11px] text-steel-olive">
+                <div className="flex gap-2 mt-3 text-[11px] text-[#526458]">
                   <span>Primary: {slide.primaryCtaText}</span>
                   <span>•</span>
                   <span>Secondary: {slide.secondaryCtaText}</span>
                 </div>
               </div>
 
-              <div className="pt-3 border-t border-steel-rich flex justify-end gap-2">
+              <div className="pt-3 border-t border-[#E2EBE5] flex justify-end gap-2">
                 <button
                   onClick={() => handleOpenEdit(slide)}
-                  className="p-1.5 rounded text-zinc-300 hover:text-white hover:bg-steel-darkest transition"
+                  className="p-1.5 rounded-full text-[#526458] hover:text-[#07552B] hover:bg-[#EBF3ED] transition"
                   title="Edit slide"
                 >
                   <Edit2 className="w-4 h-4" />
                 </button>
                 <button
                   onClick={() => handleDelete(slide.id)}
-                  className="p-1.5 rounded text-zinc-500 hover:text-red-400 hover:bg-red-950/30 transition"
+                  className="p-1.5 rounded-full text-[#526458] hover:text-red-600 hover:bg-red-50 transition"
                   title="Delete slide"
                 >
                   <Trash2 className="w-4 h-4" />

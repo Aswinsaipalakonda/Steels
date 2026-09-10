@@ -133,7 +133,7 @@ export const ProductsAdminPage: React.FC = () => {
       </div>
 
       {/* Filter Bar */}
-      <div className="p-4 rounded-xl bg-steel-forest/60 border border-steel-rich flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-between">
+      <div className="p-4 rounded-2xl bg-white border border-[#E2EBE5] flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-between shadow-sm">
         <div className="flex gap-2 flex-1 max-w-md">
           <Input
             placeholder="Search products by title or grade..."
@@ -149,7 +149,7 @@ export const ProductsAdminPage: React.FC = () => {
           <select
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
-            className="bg-steel-darkest border border-steel-rich rounded-lg px-3 py-2 text-xs text-white"
+            className="bg-white border border-[#D0DDD4] rounded-full px-3.5 py-2 text-xs text-[#111814] focus:outline-none focus:border-[#07552B]"
           >
             <option value="">All Categories</option>
             {categories.map((c) => (
@@ -161,7 +161,7 @@ export const ProductsAdminPage: React.FC = () => {
 
           <button
             onClick={loadData}
-            className="p-2 rounded-lg bg-steel-darkest border border-steel-rich text-zinc-400 hover:text-white"
+            className="p-2 rounded-full bg-white border border-[#D0DDD4] text-[#526458] hover:text-[#111814] hover:bg-[#F4F7F5] transition"
             title="Refresh"
           >
             <RotateCcw className="w-4 h-4" />
@@ -170,10 +170,10 @@ export const ProductsAdminPage: React.FC = () => {
       </div>
 
       {/* Products Table */}
-      <div className="rounded-2xl bg-steel-forest/40 border border-steel-rich overflow-hidden shadow-xl">
+      <div className="rounded-2xl bg-white border border-[#E2EBE5] overflow-hidden shadow-sm">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
-            <thead className="border-b border-steel-rich text-steel-olive uppercase font-bold text-[10px] bg-steel-forest/80">
+            <thead className="border-b border-[#E2EBE5] text-[#526458] uppercase font-bold text-[10px] bg-[#F4F7F5]">
               <tr>
                 <th className="p-4">Product</th>
                 <th className="p-4">Category</th>
@@ -183,7 +183,7 @@ export const ProductsAdminPage: React.FC = () => {
                 <th className="p-4 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-steel-rich/60">
+            <tbody className="divide-y divide-[#E2EBE5]">
               {products.length > 0 ? (
                 products.map((p) => {
                   const img =
@@ -191,20 +191,20 @@ export const ProductsAdminPage: React.FC = () => {
                     'https://images.unsplash.com/photo-1590496793929-36417d3117de?auto=format&fit=crop&w=200&q=80';
 
                   return (
-                    <tr key={p.id} className="hover:bg-steel-darkest/60 transition">
+                    <tr key={p.id} className="hover:bg-[#F4F7F5] transition">
                       <td className="p-4">
                         <div className="flex items-center gap-3">
-                          <img src={img} alt={p.name} className="w-12 h-12 rounded-lg object-cover bg-zinc-900 shrink-0" />
+                          <img src={img} alt={p.name} className="w-12 h-12 rounded-xl object-cover bg-zinc-100 shrink-0 border border-[#E2EBE5]" />
                           <div>
-                            <span className="font-bold text-white block text-sm">{p.name}</span>
-                            <span className="text-[11px] text-steel-olive">
+                            <span className="font-bold text-[#111814] block text-sm">{p.name}</span>
+                            <span className="text-[11px] text-[#526458]">
                               {p.variants?.length || 0} variants configured
                             </span>
                           </div>
                         </div>
                       </td>
-                      <td className="p-4 text-zinc-300 font-medium">{p.category?.name}</td>
-                      <td className="p-4 text-emerald-400 font-semibold">{p.primarySpecification || 'N/A'}</td>
+                      <td className="p-4 text-[#111814] font-medium">{p.category?.name}</td>
+                      <td className="p-4 text-[#07552B] font-semibold">{p.primarySpecification || 'N/A'}</td>
                       <td className="p-4">
                         <Badge variant={p.availabilityStatus === 'AVAILABLE' ? 'available' : 'limited'}>
                           {p.availabilityStatus}
@@ -213,8 +213,8 @@ export const ProductsAdminPage: React.FC = () => {
                       <td className="p-4 text-center">
                         <button
                           onClick={() => handleToggleFeatured(p.id)}
-                          className={`p-1.5 rounded-lg transition ${
-                            p.isFeatured ? 'text-amber-400 bg-amber-950/40' : 'text-zinc-600 hover:text-zinc-400'
+                          className={`p-1.5 rounded-full transition ${
+                            p.isFeatured ? 'text-amber-500 bg-amber-50' : 'text-zinc-400 hover:text-zinc-600'
                           }`}
                           title="Toggle featured homepage visibility"
                         >
@@ -224,7 +224,7 @@ export const ProductsAdminPage: React.FC = () => {
                       <td className="p-4 text-right">
                         <button
                           onClick={() => handleDelete(p.id, p.name)}
-                          className="p-1.5 rounded text-zinc-500 hover:text-red-400 hover:bg-red-950/30 transition"
+                          className="p-1.5 rounded-full text-zinc-400 hover:text-red-600 hover:bg-red-50 transition"
                           title="Delete product"
                         >
                           <Trash2 className="w-4 h-4" />
@@ -235,7 +235,7 @@ export const ProductsAdminPage: React.FC = () => {
                 })
               ) : (
                 <tr>
-                  <td colSpan={6} className="p-8 text-center text-steel-olive">
+                  <td colSpan={6} className="p-8 text-center text-[#526458]">
                     No steel products match query.
                   </td>
                 </tr>
@@ -293,9 +293,9 @@ export const ProductsAdminPage: React.FC = () => {
           />
 
           {/* Quick Variant Adder */}
-          <div className="p-4 rounded-xl bg-steel-darkest border border-steel-rich space-y-3">
+          <div className="p-4 rounded-2xl bg-[#F4F7F5] border border-[#E2EBE5] space-y-3">
             <div className="flex justify-between items-center">
-              <span className="text-xs font-bold uppercase text-emerald-400">Variant Matrix</span>
+              <span className="text-xs font-bold uppercase text-[#07552B]">Variant Matrix</span>
               <button
                 type="button"
                 onClick={() =>
@@ -304,7 +304,7 @@ export const ProductsAdminPage: React.FC = () => {
                     variants: [...form.variants, { name: '', diameter: '', grade: '' }],
                   })
                 }
-                className="text-xs text-emerald-400 hover:underline"
+                className="text-xs text-[#07552B] font-bold hover:underline"
               >
                 + Add Variant
               </button>
@@ -313,7 +313,7 @@ export const ProductsAdminPage: React.FC = () => {
               <div key={idx} className="grid grid-cols-3 gap-2">
                 <input
                   placeholder="Variant Name (e.g. 16mm)"
-                  className="bg-steel-forest border border-steel-rich rounded p-2 text-xs text-white"
+                  className="bg-white border border-[#D0DDD4] rounded-xl p-2 text-xs text-[#111814]"
                   value={v.name}
                   onChange={(e) => {
                     const newV = [...form.variants];
@@ -323,7 +323,7 @@ export const ProductsAdminPage: React.FC = () => {
                 />
                 <input
                   placeholder="Diameter/Size"
-                  className="bg-steel-forest border border-steel-rich rounded p-2 text-xs text-white"
+                  className="bg-white border border-[#D0DDD4] rounded-xl p-2 text-xs text-[#111814]"
                   value={v.diameter}
                   onChange={(e) => {
                     const newV = [...form.variants];
@@ -333,7 +333,7 @@ export const ProductsAdminPage: React.FC = () => {
                 />
                 <input
                   placeholder="Grade"
-                  className="bg-steel-forest border border-steel-rich rounded p-2 text-xs text-white"
+                  className="bg-white border border-[#D0DDD4] rounded-xl p-2 text-xs text-[#111814]"
                   value={v.grade}
                   onChange={(e) => {
                     const newV = [...form.variants];
@@ -345,7 +345,7 @@ export const ProductsAdminPage: React.FC = () => {
             ))}
           </div>
 
-          <Button type="submit" variant="primary" className="w-full" isLoading={isSubmitting}>
+          <Button type="submit" variant="primary" className="w-full shadow-md" isLoading={isSubmitting}>
             Save Steel Product
           </Button>
         </form>

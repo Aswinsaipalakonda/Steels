@@ -91,24 +91,24 @@ export const CategoriesAdminPage: React.FC = () => {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-black text-white uppercase tracking-tight font-sans">
+          <h1 className="text-2xl font-black text-[#111814] uppercase tracking-tight font-sans">
             Steel Categories Management
           </h1>
-          <p className="text-xs text-steel-olive mt-1">
+          <p className="text-xs text-[#526458] mt-1">
             Organize steel product lines (Rebars, Structural Beams, Plates, Pipes).
           </p>
         </div>
 
-        <Button variant="primary" onClick={handleOpenAdd} className="gap-2 self-start sm:self-auto">
+        <Button variant="primary" onClick={handleOpenAdd} className="gap-2 self-start sm:self-auto shadow-md">
           <Plus className="w-4 h-4" />
           <span>Add Category</span>
         </Button>
       </div>
 
       {/* Table */}
-      <div className="rounded-2xl bg-steel-forest/40 border border-steel-rich overflow-hidden shadow-xl">
+      <div className="rounded-2xl bg-white border border-[#E2EBE5] overflow-hidden shadow-sm">
         <table className="w-full text-left text-xs">
-          <thead className="border-b border-steel-rich text-steel-olive uppercase font-bold text-[10px] bg-steel-forest/80">
+          <thead className="border-b border-[#E2EBE5] text-[#526458] uppercase font-bold text-[10px] bg-[#F4F7F5]">
             <tr>
               <th className="p-4">Category</th>
               <th className="p-4">Slug</th>
@@ -117,9 +117,9 @@ export const CategoriesAdminPage: React.FC = () => {
               <th className="p-4 text-right">Actions</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-steel-rich/60">
+          <tbody className="divide-y divide-[#E2EBE5]">
             {categories.map((cat) => (
-              <tr key={cat.id} className="hover:bg-steel-darkest/60 transition">
+              <tr key={cat.id} className="hover:bg-[#F4F7F5] transition">
                 <td className="p-4">
                   <div className="flex items-center gap-3">
                     <img
@@ -128,29 +128,29 @@ export const CategoriesAdminPage: React.FC = () => {
                         'https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?auto=format&fit=crop&w=200&q=80'
                       }
                       alt={cat.name}
-                      className="w-12 h-12 rounded-lg object-cover bg-zinc-900 shrink-0"
+                      className="w-12 h-12 rounded-xl object-cover bg-zinc-100 shrink-0 border border-[#E2EBE5]"
                     />
                     <div>
-                      <span className="font-bold text-white block text-sm">{cat.name}</span>
-                      <span className="text-[11px] text-zinc-400 line-clamp-1 max-w-sm">
+                      <span className="font-bold text-[#111814] block text-sm">{cat.name}</span>
+                      <span className="text-[11px] text-[#526458] line-clamp-1 max-w-sm">
                         {cat.description || 'No description'}
                       </span>
                     </div>
                   </div>
                 </td>
-                <td className="p-4 font-mono text-zinc-400">{cat.slug}</td>
-                <td className="p-4 font-bold text-emerald-400">{cat._count?.products || 0}</td>
-                <td className="p-4 text-zinc-300 font-mono">{cat.displayOrder}</td>
+                <td className="p-4 font-mono text-[#526458]">{cat.slug}</td>
+                <td className="p-4 font-bold text-[#07552B]">{cat._count?.products || 0}</td>
+                <td className="p-4 text-[#526458] font-mono">{cat.displayOrder}</td>
                 <td className="p-4 text-right space-x-2">
                   <button
                     onClick={() => handleOpenEdit(cat)}
-                    className="p-1.5 rounded text-zinc-400 hover:text-white hover:bg-steel-forest transition"
+                    className="p-1.5 rounded-full text-[#526458] hover:text-[#07552B] hover:bg-[#EBF3ED] transition"
                   >
                     <Edit2 className="w-4 h-4" />
                   </button>
                   <button
                     onClick={() => handleDelete(cat.id, cat.name)}
-                    className="p-1.5 rounded text-zinc-400 hover:text-red-400 hover:bg-red-950/30 transition"
+                    className="p-1.5 rounded-full text-[#526458] hover:text-red-600 hover:bg-red-50 transition"
                   >
                     <Trash2 className="w-4 h-4" />
                   </button>

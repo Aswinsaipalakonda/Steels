@@ -75,23 +75,23 @@ export const ProductsPage: React.FC = () => {
   };
 
   return (
-    <div className="py-12 bg-steel-darkest min-h-screen">
+    <div className="py-12 bg-[#FAFCFA] min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Page Header */}
         <div className="mb-10">
-          <span className="text-xs font-bold uppercase tracking-widest text-emerald-400 block mb-2">
+          <span className="text-xs font-bold uppercase tracking-widest text-[#07552B] block mb-2">
             Commercial Steel Catalogue
           </span>
-          <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight uppercase">
+          <h1 className="text-3xl sm:text-5xl font-extrabold text-[#111814] tracking-tight uppercase">
             Product Inventory & Specifications
           </h1>
-          <p className="text-sm text-steel-olive mt-2 max-w-2xl">
+          <p className="text-sm text-[#526458] mt-2 max-w-2xl">
             Explore certified reinforcement rebars, structural sections, plates, and hollow tubes. Select required dimensions and request instant commercial pricing.
           </p>
         </div>
 
         {/* Filter & Search Bar */}
-        <div className="bg-steel-forest/60 border border-steel-rich p-4 rounded-2xl mb-8 flex flex-col md:flex-row gap-4 justify-between items-stretch md:items-center">
+        <div className="bg-white border border-[#E2EBE5] p-4 rounded-2xl mb-8 flex flex-col md:flex-row gap-4 justify-between items-stretch md:items-center shadow-sm">
           {/* Search Input */}
           <form onSubmit={handleSearchSubmit} className="flex-1 flex gap-2">
             <div className="relative flex-1">
@@ -101,7 +101,7 @@ export const ProductsPage: React.FC = () => {
                 onChange={(e) => setSearchInput(e.target.value)}
                 className="pl-10"
               />
-              <Search className="w-4 h-4 text-steel-olive absolute left-3.5 top-1/2 -translate-y-1/2" />
+              <Search className="w-4 h-4 text-[#526458] absolute left-3.5 top-1/2 -translate-y-1/2" />
             </div>
             <Button type="submit" variant="primary" size="md">
               Search
@@ -110,7 +110,7 @@ export const ProductsPage: React.FC = () => {
 
           {/* Sort Selector */}
           <div className="flex items-center gap-3 self-end md:self-auto">
-            <span className="text-xs text-steel-olive font-semibold whitespace-nowrap">Sort By:</span>
+            <span className="text-xs text-[#526458] font-semibold whitespace-nowrap">Sort By:</span>
             <select
               value={activeSort}
               onChange={(e) => {
@@ -118,7 +118,7 @@ export const ProductsPage: React.FC = () => {
                 next.set('sort', e.target.value);
                 setSearchParams(next);
               }}
-              className="bg-steel-darkest border border-steel-rich rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-steel-accent"
+              className="bg-white border border-[#D0DDD4] rounded-full px-3 py-2 text-xs text-[#111814] focus:outline-none focus:border-[#07552B]"
             >
               <option value="order">Recommended</option>
               <option value="newest">Newest Additions</option>
@@ -128,7 +128,7 @@ export const ProductsPage: React.FC = () => {
             {(activeCategory || activeSearch) && (
               <button
                 onClick={handleResetFilters}
-                className="p-2 rounded-lg bg-steel-darkest border border-steel-rich text-zinc-400 hover:text-white text-xs flex items-center gap-1"
+                className="p-2 rounded-full bg-white border border-[#D0DDD4] text-[#526458] hover:text-[#111814] hover:bg-[#F4F7F5] text-xs flex items-center gap-1 transition"
                 title="Clear filters"
               >
                 <RotateCcw className="w-3.5 h-3.5" />
@@ -142,10 +142,10 @@ export const ProductsPage: React.FC = () => {
         <div className="flex items-center gap-2 overflow-x-auto pb-4 mb-8 scrollbar-none">
           <button
             onClick={() => handleCategoryClick('')}
-            className={`px-4 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider transition whitespace-nowrap border ${
+            className={`px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition whitespace-nowrap border ${
               !activeCategory
-                ? 'bg-steel-accent text-white border-emerald-500/40 shadow-md'
-                : 'bg-steel-forest/80 text-zinc-400 border-steel-rich hover:text-white'
+                ? 'bg-[#07552B] text-white border-[#07552B] shadow-sm'
+                : 'bg-white text-[#526458] border-[#E2EBE5] hover:text-[#111814] hover:border-[#D0DDD4]'
             }`}
           >
             All Products
@@ -154,10 +154,10 @@ export const ProductsPage: React.FC = () => {
             <button
               key={cat.id}
               onClick={() => handleCategoryClick(cat.slug)}
-              className={`px-4 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider transition whitespace-nowrap border ${
+              className={`px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition whitespace-nowrap border ${
                 activeCategory === cat.slug
-                  ? 'bg-steel-accent text-white border-emerald-500/40 shadow-md'
-                  : 'bg-steel-forest/80 text-zinc-400 border-steel-rich hover:text-white'
+                  ? 'bg-[#07552B] text-white border-[#07552B] shadow-sm'
+                  : 'bg-white text-[#526458] border-[#E2EBE5] hover:text-[#111814] hover:border-[#D0DDD4]'
               }`}
             >
               {cat.name}
@@ -169,14 +169,14 @@ export const ProductsPage: React.FC = () => {
         {isLoading ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-12">
             {[1, 2, 3, 4, 5, 6].map((i) => (
-              <div key={i} className="h-96 rounded-2xl bg-steel-forest/30 border border-steel-rich animate-pulse" />
+              <div key={i} className="h-96 rounded-2xl bg-white border border-[#E2EBE5] animate-pulse" />
             ))}
           </div>
         ) : products.length === 0 ? (
-          <div className="text-center py-20 bg-steel-forest/20 border border-steel-rich rounded-2xl p-8">
-            <Filter className="w-12 h-12 text-steel-olive mx-auto mb-3" />
-            <h3 className="text-lg font-bold text-white mb-1">No products found</h3>
-            <p className="text-xs text-steel-olive max-w-sm mx-auto mb-6">
+          <div className="text-center py-20 bg-white border border-[#E2EBE5] rounded-2xl p-8 shadow-sm">
+            <Filter className="w-12 h-12 text-[#526458] mx-auto mb-3" />
+            <h3 className="text-lg font-bold text-[#111814] mb-1">No products found</h3>
+            <p className="text-xs text-[#526458] max-w-sm mx-auto mb-6">
               No steel products matched your current search and category filters. Try resetting the filters or contact our sales desk directly.
             </p>
             <Button variant="outline" onClick={handleResetFilters}>
@@ -194,18 +194,18 @@ export const ProductsPage: React.FC = () => {
               return (
                 <div
                   key={product.id}
-                  className="bg-steel-forest/40 border border-steel-rich rounded-2xl overflow-hidden hover:border-steel-accent transition-all duration-300 flex flex-col shadow-lg"
+                  className="bg-white border border-[#E2EBE5] rounded-2xl overflow-hidden hover:border-[#07552B] hover:shadow-lg transition-all duration-300 flex flex-col shadow-sm"
                 >
-                  <Link to={`/products/${product.slug}`} className="relative h-56 overflow-hidden block group">
+                  <Link to={`/products/${product.slug}`} className="relative h-56 overflow-hidden block group bg-zinc-100">
                     <img
                       src={primaryImg}
                       alt={product.name}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-steel-darkest via-transparent to-black/20" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                     <div className="absolute top-3 left-3 flex gap-2">
                       {product.category && (
-                        <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-steel-darkest/90 text-emerald-400 border border-steel-accent/40 backdrop-blur-sm">
+                        <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-white/90 text-[#07552B] border border-[#E2EBE5] backdrop-blur-sm shadow-sm">
                           {product.category.name}
                         </span>
                       )}
@@ -220,39 +220,39 @@ export const ProductsPage: React.FC = () => {
                   <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
                     <div>
                       <Link to={`/products/${product.slug}`}>
-                        <h3 className="text-lg font-bold text-white hover:text-emerald-400 transition-colors uppercase tracking-tight line-clamp-1">
+                        <h3 className="text-lg font-bold text-[#111814] hover:text-[#07552B] transition-colors uppercase tracking-tight line-clamp-1">
                           {product.name}
                         </h3>
                       </Link>
 
                       {product.primarySpecification && (
-                        <div className="mt-1.5 flex items-center gap-1.5 text-xs text-emerald-400 font-semibold">
+                        <div className="mt-1.5 flex items-center gap-1.5 text-xs text-[#07552B] font-semibold">
                           <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
                           <span>{product.primarySpecification}</span>
                         </div>
                       )}
 
-                      <p className="text-xs text-zinc-400 mt-2 line-clamp-2 leading-relaxed">
+                      <p className="text-xs text-[#526458] mt-2 line-clamp-2 leading-relaxed">
                         {product.shortDescription}
                       </p>
 
                       {/* Variant quick pills */}
                       {product.variants && product.variants.length > 0 && (
-                        <div className="mt-3.5 pt-3 border-t border-steel-rich/60">
-                          <span className="text-[10px] uppercase font-bold text-steel-olive block mb-1.5">
+                        <div className="mt-3.5 pt-3 border-t border-[#E2EBE5]">
+                          <span className="text-[10px] uppercase font-bold text-[#526458] block mb-1.5">
                             Available Variants / Sizes:
                           </span>
                           <div className="flex flex-wrap gap-1.5">
                             {product.variants.slice(0, 4).map((v) => (
                               <span
                                 key={v.id}
-                                className="text-[11px] px-2 py-0.5 rounded bg-steel-darkest text-zinc-300 border border-steel-rich"
+                                className="text-[11px] px-2.5 py-0.5 rounded-full bg-[#F4F7F5] text-[#111814] border border-[#E2EBE5] font-medium"
                               >
                                 {v.diameter || v.size || v.thickness || v.name}
                               </span>
                             ))}
                             {product.variants.length > 4 && (
-                              <span className="text-[10px] px-1.5 py-0.5 text-steel-olive">
+                              <span className="text-[10px] px-1.5 py-0.5 text-[#526458]">
                                 +{product.variants.length - 4} more
                               </span>
                             )}
@@ -261,7 +261,7 @@ export const ProductsPage: React.FC = () => {
                       )}
                     </div>
 
-                    <div className="pt-3 border-t border-steel-rich/60 flex items-center gap-3">
+                    <div className="pt-3 border-t border-[#E2EBE5] flex items-center gap-3">
                       <Button
                         variant="primary"
                         size="sm"

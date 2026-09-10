@@ -1,5 +1,5 @@
 import React from 'react';
-import { Building2, TrainTrack, Factory, Warehouse, ShieldAlert, CheckCircle2 } from 'lucide-react';
+import { Building2, TrainTrack, Factory, Warehouse, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Button } from '../components/ui/Button';
 
@@ -32,17 +32,17 @@ export const IndustriesPage: React.FC = () => {
   ];
 
   return (
-    <div className="py-14 bg-steel-darkest min-h-screen">
+    <div className="py-14 bg-[#FAFCFA] min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         <div className="max-w-3xl">
-          <span className="text-xs font-bold uppercase tracking-widest text-emerald-400 block mb-2">
+          <span className="text-xs font-bold uppercase tracking-widest text-[#07552B] block mb-2">
             Project Applications
           </span>
-          <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight uppercase leading-tight font-sans">
+          <h1 className="text-3xl sm:text-5xl font-black text-[#111814] tracking-tight uppercase leading-tight font-sans">
             Engineered Steel For Strategic Industrial Sectors
           </h1>
-          <p className="text-base text-zinc-300 mt-4 leading-relaxed font-normal">
-            Every construction sector has unique load profiles and metallographic specifications. Apex Steel works closely with project structural consultants to supply the right grade on schedule.
+          <p className="text-base text-[#526458] mt-4 leading-relaxed font-normal">
+            Every construction sector has unique load profiles and metallographic specifications. Steels works closely with project structural consultants to supply the right grade on schedule.
           </p>
         </div>
 
@@ -52,26 +52,26 @@ export const IndustriesPage: React.FC = () => {
             return (
               <div
                 key={idx}
-                className="p-8 rounded-2xl bg-steel-forest/50 border border-steel-rich space-y-5 hover:border-steel-accent transition"
+                className="p-8 rounded-3xl bg-white border border-[#E2EBE5] space-y-5 hover:border-[#07552B] hover:shadow-md transition shadow-sm"
               >
-                <div className="w-12 h-12 rounded-xl bg-steel-primary border border-steel-accent flex items-center justify-center text-emerald-400">
+                <div className="w-12 h-12 rounded-2xl bg-[#EBF3ED] border border-[#D0DDD4] flex items-center justify-center text-[#07552B]">
                   <Icon className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-white uppercase tracking-tight mb-2">
+                  <h3 className="text-xl font-bold text-[#111814] uppercase tracking-tight mb-2">
                     {sector.title}
                   </h3>
-                  <p className="text-sm text-zinc-400 leading-relaxed font-normal">{sector.desc}</p>
+                  <p className="text-sm text-[#526458] leading-relaxed font-normal">{sector.desc}</p>
                 </div>
 
-                <div className="pt-4 border-t border-steel-rich/60">
-                  <span className="text-xs font-bold uppercase tracking-wider text-emerald-400 block mb-2">
+                <div className="pt-4 border-t border-[#E2EBE5]">
+                  <span className="text-xs font-bold uppercase tracking-wider text-[#07552B] block mb-2">
                     Commonly Supplied Materials:
                   </span>
                   <ul className="space-y-1.5">
                     {sector.materials.map((m, i) => (
-                      <li key={i} className="flex items-center gap-2 text-xs text-zinc-300">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                      <li key={i} className="flex items-center gap-2 text-xs text-[#526458]">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-[#07552B] shrink-0" />
                         <span>{m}</span>
                       </li>
                     ))}
