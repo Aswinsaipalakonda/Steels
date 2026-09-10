@@ -143,8 +143,8 @@ export const Footer: React.FC = () => {
               </li>
               <li className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 text-[#07552B] shrink-0" />
-                <a href="mailto:sales@steelplatform.com" className="hover:text-[#07552B] transition">
-                  sales@steelplatform.com
+                <a href="mailto:sales@steels.com" className="hover:text-[#07552B] transition">
+                  sales@steels.com
                 </a>
               </li>
               <li className="flex items-center gap-2.5 text-xs text-[#697057]">

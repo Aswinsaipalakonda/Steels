@@ -53,14 +53,14 @@ export const AdminLayout: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#FAFCFA] text-[#111814] flex font-sans">
-      {/* Sidebar Desktop: Deep Luxury Forest-Night Container with White Capsule Active Pill (Reference Image 2) */}
-      <aside className="hidden lg:flex w-68 bg-[#061B12] flex-col justify-between shrink-0 shadow-2xl z-20 sticky top-0 h-screen border-r border-[#04150E]">
-        <div className="flex flex-col flex-1 overflow-y-auto">
+      {/* Sidebar Desktop: Deep Luxury Forest-Night Container with Compact Spacing (Reference Image) */}
+      <aside className="hidden lg:flex w-64 bg-[#061B12] flex-col justify-between shrink-0 shadow-2xl z-20 sticky top-0 h-screen border-r border-[#04150E] overflow-y-auto">
+        <div className="flex flex-col">
           {/* Top Brand Header */}
-          <div className="p-6 flex items-center gap-3.5 border-b border-white/10">
+          <div className="p-5 pb-4 flex items-center gap-3 border-b border-white/10">
             {/* White Circular Badge with Steels Logo */}
-            <div className="w-11 h-11 rounded-full bg-white flex items-center justify-center p-1.5 shadow-md shrink-0">
-              <Logo variant="light" showText={false} size="sm" />
+            <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center p-1 shadow-md shrink-0">
+              <img src="/S_logo.png" alt="Steels" className="w-full h-full object-contain" />
             </div>
 
             <div className="flex flex-col min-w-0">
@@ -74,57 +74,60 @@ export const AdminLayout: React.FC = () => {
             </div>
           </div>
 
-          {/* Navigation Links (Interactive High-Contrast Capsule Pills matching Image 2) */}
-          <div className="pt-6 px-3.5 flex-1">
-            <nav className="space-y-2">
-              {navItems.map((item) => {
-                const Icon = item.icon;
-                const isActive =
-                  location.pathname === item.href ||
-                  (item.href !== '/admin/dashboard' && location.pathname.startsWith(item.href));
-
-                return (
-                  <Link
-                    key={item.label}
-                    to={item.href}
-                    className={`group relative flex items-center justify-between px-4 py-3.5 rounded-full text-xs transition-all duration-200 ${
-                      isActive
-                        ? 'bg-white text-[#061B12] font-black shadow-xl scale-[1.02]'
-                        : 'text-emerald-100/75 hover:text-white hover:bg-white/10 font-semibold'
-                    }`}
-                  >
-                    <div className="flex items-center gap-3.5 min-w-0">
-                      <Icon
-                        className={`w-4 h-4 shrink-0 transition-transform duration-200 group-hover:scale-110 ${
-                          isActive ? 'text-[#07552B]' : 'text-emerald-400/80 group-hover:text-white'
-                        }`}
-                      />
-                      <span className="truncate tracking-wide">{item.label}</span>
-                    </div>
-
-                    {/* Subtle status indicators / badges */}
-                    {isActive ? (
-                      <span className="w-2 h-2 rounded-full bg-[#07552B] shrink-0" />
-                    ) : item.badge ? (
-                      <span className="text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-white/10 text-emerald-300 group-hover:bg-white/20 transition">
-                        {item.badge}
-                      </span>
-                    ) : null}
-                  </Link>
-                );
-              })}
-            </nav>
+          {/* Section Header */}
+          <div className="px-5 pt-4 pb-1.5 text-[10px] font-extrabold tracking-widest text-emerald-100/40 uppercase">
+            General Navigation
           </div>
+
+          {/* Navigation Links: Snug, compact spacing (space-y-1.5) matching reference layout */}
+          <nav className="px-3 pt-1 space-y-1.5">
+            {navItems.map((item) => {
+              const Icon = item.icon;
+              const isActive =
+                location.pathname === item.href ||
+                (item.href !== '/admin/dashboard' && location.pathname.startsWith(item.href));
+
+              return (
+                <Link
+                  key={item.label}
+                  to={item.href}
+                  className={`group relative flex items-center justify-between px-3.5 py-2.5 rounded-full text-xs transition-all duration-150 ${
+                    isActive
+                      ? 'bg-white text-[#061B12] font-black shadow-md'
+                      : 'text-emerald-100/70 hover:text-white hover:bg-white/10 font-medium'
+                  }`}
+                >
+                  <div className="flex items-center gap-3 min-w-0">
+                    <Icon
+                      className={`w-4 h-4 shrink-0 transition-colors ${
+                        isActive ? 'text-[#07552B]' : 'text-emerald-400/80 group-hover:text-white'
+                      }`}
+                    />
+                    <span className="truncate tracking-wide">{item.label}</span>
+                  </div>
+
+                  {/* Subtle status indicators / badges */}
+                  {isActive ? (
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#07552B] shrink-0" />
+                  ) : item.badge ? (
+                    <span className="text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-white/10 text-emerald-300 group-hover:bg-white/20 transition">
+                      {item.badge}
+                    </span>
+                  ) : null}
+                </Link>
+              );
+            })}
+          </nav>
         </div>
 
-        {/* Bottom Pinned Sign Out Action (Matching Image 2 Bottom Left) */}
-        <div className="p-4 pb-6 border-t border-white/10 bg-[#05170F]/50">
+        {/* Bottom Pinned Sign Out Action (Matching Reference Image Bottom Left) */}
+        <div className="p-4 pb-5 border-t border-white/10 mt-auto">
           <button
             onClick={handleLogout}
-            className="flex items-center gap-3 px-4 py-3 text-xs font-bold uppercase tracking-wider text-rose-400 hover:text-rose-300 hover:bg-white/10 rounded-full transition-all duration-150 w-full"
+            className="flex items-center gap-2.5 px-3.5 py-2.5 text-xs font-semibold text-rose-400 hover:text-rose-300 hover:bg-rose-500/10 rounded-full transition-colors w-full"
           >
             <LogOut className="w-4 h-4 text-rose-400 shrink-0" />
-            <span>Sign Out</span>
+            <span>Logout</span>
           </button>
         </div>
       </aside>
@@ -192,8 +195,8 @@ export const AdminLayout: React.FC = () => {
               <div>
                 <div className="flex items-center justify-between pb-4 border-b border-white/10">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center p-1.5 shadow-sm">
-                      <Logo variant="light" showText={false} size="sm" />
+                    <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center p-1 shadow-sm shrink-0">
+                      <img src="/S_logo.png" alt="Steels" className="w-full h-full object-contain" />
                     </div>
                     <span className="font-black text-base text-white uppercase">Steels</span>
                   </div>
@@ -205,7 +208,11 @@ export const AdminLayout: React.FC = () => {
                   </button>
                 </div>
 
-                <nav className="mt-6 space-y-2">
+                <div className="px-1 pt-4 pb-1.5 text-[10px] font-extrabold tracking-widest text-emerald-100/40 uppercase">
+                  General Navigation
+                </div>
+
+                <nav className="mt-1 space-y-1.5">
                   {navItems.map((item) => {
                     const Icon = item.icon;
                     const isActive =
@@ -216,17 +223,17 @@ export const AdminLayout: React.FC = () => {
                         key={item.label}
                         to={item.href}
                         onClick={() => setIsMobileNavOpen(false)}
-                        className={`flex items-center justify-between px-4 py-3.5 rounded-full text-xs transition ${
+                        className={`flex items-center justify-between px-3.5 py-2.5 rounded-full text-xs transition ${
                           isActive
                             ? 'bg-white text-[#061B12] font-black shadow-lg'
-                            : 'text-emerald-100/75 hover:text-white hover:bg-white/10 font-semibold'
+                            : 'text-emerald-100/75 hover:text-white hover:bg-white/10 font-medium'
                         }`}
                       >
                         <div className="flex items-center gap-3">
                           <Icon className={`w-4 h-4 ${isActive ? 'text-[#07552B]' : 'text-emerald-400'}`} />
                           <span>{item.label}</span>
                         </div>
-                        {isActive && <span className="w-2 h-2 rounded-full bg-[#07552B]" />}
+                        {isActive && <span className="w-1.5 h-1.5 rounded-full bg-[#07552B]" />}
                       </Link>
                     );
                   })}

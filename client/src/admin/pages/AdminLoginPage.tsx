@@ -49,7 +49,7 @@ export const AdminLoginPage: React.FC = () => {
             <Logo variant="dark" size="lg" />
           </div>
           <h1 className="text-xl font-black text-[#111814] tracking-tight uppercase">Admin Management Desk</h1>
-          <p className="text-xs text-[#526458] mt-1">Steel Enquiry & Commercial Operations Platform</p>
+          <p className="text-xs text-[#526458] mt-1">Commercial Steel Supply & Operations Portal</p>
         </div>
 
         {/* Form */}
@@ -58,7 +58,7 @@ export const AdminLoginPage: React.FC = () => {
             <Input
               label="Corporate Email"
               type="email"
-              placeholder="admin@steelplatform.com"
+              placeholder="admin@steels.com"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -101,7 +101,7 @@ export const AdminLoginPage: React.FC = () => {
             <span>Default Seed Credentials:</span>
           </div>
           <p className="text-[#526458]">
-            Email: <span className="text-[#111814] font-semibold font-mono">admin@steelplatform.com</span>
+            Email: <span className="text-[#111814] font-semibold font-mono">admin@steels.com</span>
           </p>
           <p className="text-[#526458]">
             Password: <span className="text-[#111814] font-semibold font-mono">Password@123</span>

@@ -125,9 +125,9 @@ export const DashboardPage: React.FC = () => {
               <CheckCircle2 className="w-4 h-4 text-[#07552B]" />
             </div>
             <div>
-              <span className="font-bold block text-[#111814]">Local MySQL Platform Synchronized</span>
+              <span className="font-bold block text-[#111814]">Live Operations Synchronized</span>
               <span className="text-[#526458]">
-                All steel product catalogues, mill partner feeds, and quotation requests are currently up to date.
+                All steel product catalogues, partner mill feeds, and quotation requests are currently up to date.
               </span>
             </div>
           </div>

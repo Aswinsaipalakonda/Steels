@@ -9,7 +9,7 @@ export const SettingsAdminPage: React.FC = () => {
   const [settings, setSettings] = useState<Record<string, string>>({
     company_name: 'Steels Industrial Supply Ltd.',
     contact_phone: '+91 98765 43210',
-    contact_email: 'sales@steelplatform.com',
+    contact_email: 'sales@steels.com',
     contact_address: 'Plot 42, Heavy Industrial Area, Steel Hub Phase II, Mumbai - 400072',
     working_hours: 'Monday - Saturday: 8:00 AM - 7:30 PM',
     stat_tons_supplied: '500,000+ MT',
