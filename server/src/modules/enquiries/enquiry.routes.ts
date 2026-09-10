@@ -17,6 +17,7 @@ router.post('/', validate(createPublicEnquirySchema), EnquiryController.createPu
 // Protected Admin/Staff routes
 router.get('/', authenticate, validate(enquiryQuerySchema), EnquiryController.getAdminEnquiries);
 router.get('/:id', authenticate, EnquiryController.getEnquiryById);
+router.put('/:id', authenticate, EnquiryController.updateEnquiry);
 router.put('/:id/status', authenticate, validate(updateEnquiryStatusSchema), EnquiryController.updateEnquiryStatus);
 router.put('/:id/assign', authenticate, validate(assignStaffSchema), EnquiryController.assignStaff);
 

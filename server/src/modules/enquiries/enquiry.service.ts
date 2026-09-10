@@ -275,4 +275,79 @@ export class EnquiryService {
       return updated;
     });
   }
+
+  static async updateEnquiry(
+    id: string,
+    data: {
+      quantity?: number | null;
+      unit?: string | null;
+      location?: string | null;
+      message?: string | null;
+      internalNotes?: string | null;
+      status?: EnquiryStatus;
+      statusNote?: string;
+      customer?: {
+        name?: string;
+        email?: string;
+        phone?: string;
+        company?: string;
+        location?: string;
+      };
+    },
+    userId?: string
+  ) {
+    const enquiry = await prisma.enquiry.findUnique({ where: { id }, include: { customer: true } });
+    if (!enquiry) throw ApiError.notFound('Enquiry not found.');
+
+    return prisma.$transaction(async (tx) => {
+      // 1. Update Customer details if provided
+      if (data.customer && enquiry.customerId) {
+        await tx.customer.update({
+          where: { id: enquiry.customerId },
+          data: {
+            name: data.customer.name !== undefined ? data.customer.name : undefined,
+            email: data.customer.email !== undefined ? data.customer.email : undefined,
+            phone: data.customer.phone !== undefined ? data.customer.phone : undefined,
+            company: data.customer.company !== undefined ? data.customer.company : undefined,
+            location: data.customer.location !== undefined ? data.customer.location : undefined,
+          },
+        });
+      }
+
+      // 2. Track status change if status is updated
+      if (data.status && data.status !== enquiry.status) {
+        await tx.enquiryStatusHistory.create({
+          data: {
+            enquiryId: id,
+            previousStatus: enquiry.status,
+            newStatus: data.status,
+            changedById: userId,
+            note: data.statusNote || `Status updated to ${data.status.replace(/_/g, ' ')}`,
+          },
+        });
+      }
+
+      // 3. Update Enquiry
+      const updated = await tx.enquiry.update({
+        where: { id },
+        data: {
+          quantity: data.quantity !== undefined ? data.quantity : undefined,
+          unit: data.unit !== undefined ? data.unit : undefined,
+          location: data.location !== undefined ? data.location : undefined,
+          message: data.message !== undefined ? data.message : undefined,
+          internalNotes: data.internalNotes !== undefined ? data.internalNotes : undefined,
+          status: data.status !== undefined ? data.status : undefined,
+        },
+        include: {
+          customer: true,
+          product: true,
+          variant: true,
+          statusHistory: { orderBy: { createdAt: 'desc' }, include: { changedBy: true } },
+        },
+      });
+
+      return updated;
+    });
+  }
 }
+

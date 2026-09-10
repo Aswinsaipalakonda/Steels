@@ -27,7 +27,6 @@ export const DashboardPage: React.FC = () => {
   const [data, setData] = useState<DashboardOverview | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isSyncing, setIsSyncing] = useState(false);
-  const [showNotice, setShowNotice] = useState(true);
   const [timeRange, setTimeRange] = useState<'7' | '30' | '90'>('7');
   const [hoveredBarIndex, setHoveredBarIndex] = useState<number | null>(null);
 
@@ -116,30 +115,6 @@ export const DashboardPage: React.FC = () => {
           <span>{isSyncing ? 'Syncing...' : 'Sync Analytics'}</span>
         </button>
       </div>
-
-      {/* 2. Interactive System Notification / Status Banner (Matching Image 2) */}
-      {showNotice && (
-        <div className="p-4 rounded-2xl bg-[#EBF3ED] border border-[#D0DDD4] text-[#07552B] flex items-center justify-between gap-3 shadow-xs">
-          <div className="flex items-center gap-3 text-xs">
-            <div className="w-8 h-8 rounded-full bg-white border border-[#D0DDD4] flex items-center justify-center shrink-0 shadow-xs">
-              <CheckCircle2 className="w-4 h-4 text-[#07552B]" />
-            </div>
-            <div>
-              <span className="font-bold block text-[#111814]">Live Operations Synchronized</span>
-              <span className="text-[#526458]">
-                All steel product catalogues, partner mill feeds, and quotation requests are currently up to date.
-              </span>
-            </div>
-          </div>
-          <button
-            onClick={() => setShowNotice(false)}
-            className="p-1 rounded-full text-[#526458] hover:text-[#111814] hover:bg-white/60 transition shrink-0"
-            title="Dismiss notice"
-          >
-            <X className="w-4 h-4" />
-          </button>
-        </div>
-      )}
 
       {/* 3. Top KPI Metric Cards (Grid of 4 matching Reference Image 2 layout) */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">

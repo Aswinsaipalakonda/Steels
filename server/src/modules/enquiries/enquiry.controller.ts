@@ -60,4 +60,14 @@ export class EnquiryController {
       next(error);
     }
   }
+
+  static async updateEnquiry(req: Request, res: Response, next: NextFunction) {
+    try {
+      const id = req.params.id as string;
+      const updated = await EnquiryService.updateEnquiry(id, req.body, req.user?.id);
+      res.json(ApiResponse.success(updated, 'Enquiry updated successfully.'));
+    } catch (error) {
+      next(error);
+    }
+  }
 }
