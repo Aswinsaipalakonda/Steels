@@ -113,7 +113,7 @@ export const EnquiriesAdminPage: React.FC = () => {
     const cancelledCount = enquiries.filter((e) => e.status === 'CANCELLED').length;
     const inProgressCount = contactedCount + quotedCount + negotiationCount;
 
-    const totalTonnage = enquiries.reduce((acc, curr) => acc + (curr.quantity || 0), 0);
+    const totalTonnage = enquiries.reduce((acc, curr) => acc + Number(curr.quantity || 0), 0);
 
     return {
       total,
@@ -361,7 +361,7 @@ export const EnquiriesAdminPage: React.FC = () => {
   };
 
   return (
-    <div className="space-y-6 max-w-7xl mx-auto font-sans pb-12 relative">
+    <div className="space-y-6 w-full max-w-[1600px] mx-auto font-sans pb-12 relative">
       {/* 1. Page Header with Title & Top Actions */}
       <div className="bg-white border border-[#E2EBE5] rounded-3xl p-6 sm:p-8 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
@@ -632,17 +632,17 @@ export const EnquiriesAdminPage: React.FC = () => {
       {/* 5. Main Content: Table View OR Kanban Board */}
       {viewMode === 'table' ? (
         <div className="rounded-3xl bg-white border border-[#E2EBE5] overflow-hidden shadow-xs">
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs">
-              <thead className="border-b border-[#E2EBE5] text-[#526458] uppercase font-bold text-[10px] bg-[#F4F7F5]">
+          <div className="overflow-x-auto scrollbar-thin">
+            <table className="w-full text-left text-xs table-auto">
+              <thead className="border-b border-[#E2EBE5] text-[#526458] uppercase font-bold text-[10px] bg-[#F4F7F5] tracking-wider">
                 <tr>
-                  <th className="py-4 px-5">Enquiry Reference</th>
-                  <th className="py-4 px-5">Buyer & Organization</th>
-                  <th className="py-4 px-5">Steel Requirements</th>
-                  <th className="py-4 px-5">Required Volume</th>
-                  <th className="py-4 px-5">Pipeline Status</th>
-                  <th className="py-4 px-5">Received</th>
-                  <th className="py-4 px-5 text-right">Quick Actions</th>
+                  <th className="py-3.5 px-3.5 sm:px-4">Enquiry Reference</th>
+                  <th className="py-3.5 px-3.5 sm:px-4">Buyer & Organization</th>
+                  <th className="py-3.5 px-3.5 sm:px-4">Steel Requirements</th>
+                  <th className="py-3.5 px-3.5 sm:px-4 whitespace-nowrap">Volume</th>
+                  <th className="py-3.5 px-3.5 sm:px-4 whitespace-nowrap">Pipeline Status</th>
+                  <th className="py-3.5 px-3.5 sm:px-4 whitespace-nowrap">Received</th>
+                  <th className="py-3.5 px-3.5 sm:px-4 text-right whitespace-nowrap">Quick Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-[#E2EBE5]">
@@ -660,17 +660,20 @@ export const EnquiriesAdminPage: React.FC = () => {
                     return (
                       <tr key={enq.id} className="hover:bg-emerald-50/40 even:bg-slate-50/40 transition-colors group">
                         {/* Enquiry # */}
-                        <td className="py-4 px-5">
+                        <td className="py-3.5 px-3.5 sm:px-4 align-middle">
                           <button
                             onClick={() => handleOpenDetail(enq.id, 'details')}
-                            className="font-mono text-xs font-bold text-[#07552B] bg-[#EBF3ED] hover:bg-[#07552B] hover:text-white px-2.5 py-1 rounded-md border border-[#D0DDD4] inline-flex items-center gap-1 transition-all group-hover:border-[#07552B] shadow-2xs active:scale-95"
+                            className="font-mono text-xs font-bold text-[#07552B] bg-[#EBF3ED] hover:bg-[#07552B] hover:text-white px-2.5 py-1 rounded-md border border-[#D0DDD4] inline-flex items-center gap-1 transition-all group-hover:border-[#07552B] shadow-2xs active:scale-95 whitespace-nowrap"
                             title="Inspect & manage record"
                           >
                             <span>{enq.enquiryNumber}</span>
                             <ArrowUpRight className="w-3 h-3 opacity-60 group-hover:opacity-100 transition-opacity" />
                           </button>
                           {enq.location && (
-                            <span className="text-[10px] text-[#526458] flex items-center gap-1 mt-1 truncate max-w-[150px]">
+                            <span
+                              className="text-[10px] text-[#526458] flex items-center gap-1 mt-1 truncate max-w-[140px]"
+                              title={enq.location}
+                            >
                               <MapPin className="w-3 h-3 text-[#07552B] shrink-0" />
                               <span className="truncate">{enq.location}</span>
                             </span>
@@ -678,17 +681,17 @@ export const EnquiriesAdminPage: React.FC = () => {
                         </td>
 
                         {/* Customer */}
-                        <td className="py-4 px-5">
-                          <div className="flex items-center gap-3">
+                        <td className="py-3.5 px-3.5 sm:px-4 align-middle">
+                          <div className="flex items-center gap-2.5">
                             <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#07552B] to-emerald-700 text-white font-black text-xs flex items-center justify-center shrink-0 shadow-xs ring-2 ring-white">
                               {initials}
                             </div>
                             <div className="min-w-0">
-                              <span className="font-bold text-[#111814] block text-xs truncate">
+                              <span className="font-bold text-[#111814] block text-xs truncate max-w-[160px]">
                                 {enq.customer?.name}
                               </span>
                               {enq.customer?.company && (
-                                <span className="text-[11px] text-[#526458] block truncate font-medium">
+                                <span className="text-[11px] text-[#526458] block truncate max-w-[160px] font-medium">
                                   {enq.customer.company}
                                 </span>
                               )}
@@ -707,12 +710,12 @@ export const EnquiriesAdminPage: React.FC = () => {
                         </td>
 
                         {/* Product Requirement */}
-                        <td className="py-4 px-5">
-                          <span className="font-bold text-[#111814] block text-xs">
+                        <td className="py-3.5 px-3.5 sm:px-4 align-middle">
+                          <span className="font-bold text-[#111814] block text-xs truncate max-w-[180px]">
                             {enq.product?.name || 'Commercial Steel Project'}
                           </span>
                           {enq.variant ? (
-                            <span className="inline-block mt-0.5 text-[10px] font-bold text-emerald-900 bg-emerald-100 px-2.5 py-0.5 rounded-full border border-emerald-300">
+                            <span className="inline-block mt-0.5 text-[10px] font-bold text-emerald-900 bg-emerald-100 px-2.5 py-0.5 rounded-full border border-emerald-300 whitespace-nowrap">
                               {enq.variant.name || enq.variant.diameter}
                             </span>
                           ) : (
@@ -721,22 +724,23 @@ export const EnquiriesAdminPage: React.FC = () => {
                         </td>
 
                         {/* Quantity */}
-                        <td className="py-4 px-5">
-                          <div className="font-black text-slate-900 text-sm">
-                            <span className="bg-slate-100 text-slate-900 px-2.5 py-0.5 rounded-md border border-slate-200 inline-block">
-                              {enq.quantity ? `${enq.quantity} ${enq.unit || 'MT'}` : 'Custom Tonnage'}
-                            </span>
+                        <td className="py-3.5 px-3.5 sm:px-4 align-middle whitespace-nowrap">
+                          <div className="inline-flex items-center gap-1.5 bg-slate-100 text-slate-900 px-2.5 py-1 rounded-lg border border-slate-200 font-bold text-xs whitespace-nowrap">
+                            <span className="font-black">{enq.quantity ?? 'Custom'}</span>
+                            <span className="text-[11px] font-semibold text-slate-600">{enq.unit || 'MT'}</span>
                           </div>
-                          <span className="text-[10px] text-[#526458] block mt-0.5 font-medium">Industrial Supply</span>
+                          <span className="text-[10px] text-[#526458] block mt-0.5 font-medium whitespace-nowrap">
+                            Industrial Supply
+                          </span>
                         </td>
 
                         {/* Status Badge */}
-                        <td className="py-4 px-5">
+                        <td className="py-3.5 px-3.5 sm:px-4 align-middle whitespace-nowrap">
                           {renderStatusBadge(enq.status)}
                         </td>
 
                         {/* Received */}
-                        <td className="py-4 px-5 text-[#526458] whitespace-nowrap">
+                        <td className="py-3.5 px-3.5 sm:px-4 text-[#526458] whitespace-nowrap align-middle">
                           <div className="flex items-center gap-1.5 text-xs">
                             <Clock className="w-3.5 h-3.5 text-[#526458]" />
                             <span>{formatDate(enq.createdAt)}</span>
@@ -744,34 +748,34 @@ export const EnquiriesAdminPage: React.FC = () => {
                         </td>
 
                         {/* Actions */}
-                        <td className="py-4 px-5 text-right whitespace-nowrap">
-                          <div className="flex items-center justify-end gap-2">
+                        <td className="py-3.5 px-3.5 sm:px-4 text-right whitespace-nowrap align-middle">
+                          <div className="flex items-center justify-end gap-1.5">
                             {enq.customer?.phone && (
                               <a
                                 href={`tel:${enq.customer.phone}`}
-                                className="w-8 h-8 rounded-full bg-emerald-100 text-emerald-800 hover:bg-emerald-600 hover:text-white border border-emerald-300 flex items-center justify-center transition-all duration-200 shadow-2xs hover:shadow-md hover:scale-110 active:scale-95 group/call"
+                                className="w-7 h-7 rounded-full bg-emerald-100 text-emerald-800 hover:bg-emerald-600 hover:text-white border border-emerald-300 flex items-center justify-center transition-all duration-200 shadow-2xs hover:scale-105 active:scale-95 shrink-0 group/call"
                                 title={`Call ${enq.customer?.name} (${enq.customer?.phone})`}
                               >
-                                <Phone className="w-3.5 h-3.5 transition-transform group-hover/call:rotate-12" />
+                                <Phone className="w-3 h-3 transition-transform group-hover/call:rotate-12" />
                               </a>
                             )}
 
                             {enq.customer?.email && (
                               <a
                                 href={`mailto:${enq.customer.email}?subject=Steels Quotation #${enq.enquiryNumber}`}
-                                className="w-8 h-8 rounded-full bg-blue-100 text-blue-800 hover:bg-blue-600 hover:text-white border border-blue-300 flex items-center justify-center transition-all duration-200 shadow-2xs hover:shadow-md hover:scale-110 active:scale-95 group/mail"
+                                className="w-7 h-7 rounded-full bg-blue-100 text-blue-800 hover:bg-blue-600 hover:text-white border border-blue-300 flex items-center justify-center transition-all duration-200 shadow-2xs hover:scale-105 active:scale-95 shrink-0 group/mail"
                                 title={`Email ${enq.customer?.email}`}
                               >
-                                <Mail className="w-3.5 h-3.5 transition-transform group-hover/mail:-translate-y-0.5" />
+                                <Mail className="w-3 h-3 transition-transform group-hover/mail:-translate-y-0.5" />
                               </a>
                             )}
 
                             <button
                               onClick={() => handleOpenDetail(enq.id, 'details')}
-                              className="px-3.5 py-1.5 rounded-full bg-gradient-to-r from-[#061B12] to-[#07552B] hover:from-[#07552B] hover:to-[#0D7A40] text-white font-bold text-xs shadow-xs hover:shadow-md transition-all duration-200 hover:scale-105 active:scale-95 flex items-center gap-1.5 border border-[#07552B]/40"
+                              className="px-3 py-1.5 rounded-full bg-gradient-to-r from-[#061B12] to-[#07552B] hover:from-[#07552B] hover:to-[#0D7A40] text-white font-bold text-[11px] shadow-xs hover:shadow-sm transition-all duration-200 hover:scale-[1.02] active:scale-95 flex items-center gap-1 border border-[#07552B]/40 shrink-0"
                               title="Open sliding side window"
                             >
-                              <span>Manage Record</span>
+                              <span>Manage</span>
                               <ChevronRight className="w-3 h-3 text-emerald-300" />
                             </button>
                           </div>
