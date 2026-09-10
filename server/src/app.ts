@@ -19,8 +19,12 @@ import enquiryRoutes from './modules/enquiries/enquiry.routes';
 import customerRoutes from './modules/customers/customer.routes';
 import contactRoutes from './modules/contact/contact.routes';
 import analyticsRoutes from './modules/analytics/analytics.routes';
+import path from 'path';
 
 const app: Express = express();
+
+// Serve local static uploaded media files
+app.use('/uploads', express.static(path.join(__dirname, '../public/uploads')));
 
 // Security middleware
 app.use(

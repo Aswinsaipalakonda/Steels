@@ -27,9 +27,19 @@ import {
   Clock,
   ArrowUpRight,
   ExternalLink,
+  UploadCloud,
+  Image as ImageIcon,
 } from 'lucide-react';
 
 type DrawerMode = 'view' | 'edit' | 'create';
+
+interface FormProductImage {
+  id: string;
+  file?: File;
+  previewUrl: string;
+  isPrimary: boolean;
+  altText?: string;
+}
 
 export const ProductsAdminPage: React.FC = () => {
   const { success, error } = useToast();
@@ -55,7 +65,9 @@ export const ProductsAdminPage: React.FC = () => {
   const [formShortDesc, setFormShortDesc] = useState('');
   const [formFullDesc, setFormFullDesc] = useState('');
   const [formAvailableUnits, setFormAvailableUnits] = useState('MT,KG,PCS,Bundles');
-  const [formImageUrl, setFormImageUrl] = useState('');
+  const [formImages, setFormImages] = useState<FormProductImage[]>([]);
+  const [isDraggingOver, setIsDraggingOver] = useState(false);
+  const fileInputRef = React.useRef<HTMLInputElement>(null);
   const [formAvailabilityStatus, setFormAvailabilityStatus] = useState('AVAILABLE');
   const [formIsFeatured, setFormIsFeatured] = useState(false);
   const [formVariants, setFormVariants] = useState<Array<{ name: string; diameter: string; grade: string }>>([
@@ -64,6 +76,60 @@ export const ProductsAdminPage: React.FC = () => {
   const [formSpecs, setFormSpecs] = useState<Array<{ specKey: string; specValue: string }>>([
     { specKey: '', specValue: '' },
   ]);
+
+  // Image Upload Handlers (Up to 2 images)
+  const handleImageFilesSelected = (files: FileList | null) => {
+    if (!files || files.length === 0) return;
+    const newFiles = Array.from(files);
+
+    const currentCount = formImages.length;
+    const availableSlots = 2 - currentCount;
+
+    if (availableSlots <= 0) {
+      error('Maximum 2 images allowed per product.');
+      return;
+    }
+
+    const filesToProcess = newFiles.slice(0, availableSlots);
+    if (newFiles.length > availableSlots) {
+      error(`Only ${availableSlots} more image(s) can be added (max 2 allowed).`);
+    }
+
+    const newItems: FormProductImage[] = filesToProcess.map((file, idx) => ({
+      id: `img_${Date.now()}_${idx}_${Math.random().toString(36).substring(2, 6)}`,
+      file,
+      previewUrl: URL.createObjectURL(file),
+      isPrimary: currentCount === 0 && idx === 0,
+      altText: file.name.replace(/\.[^/.]+$/, ''),
+    }));
+
+    setFormImages((prev) => {
+      const next = [...prev, ...newItems];
+      if (!next.some((img) => img.isPrimary) && next.length > 0) {
+        next[0].isPrimary = true;
+      }
+      return next;
+    });
+  };
+
+  const handleRemoveImage = (id: string) => {
+    setFormImages((prev) => {
+      const filtered = prev.filter((img) => img.id !== id);
+      if (filtered.length > 0 && !filtered.some((img) => img.isPrimary)) {
+        filtered[0].isPrimary = true;
+      }
+      return filtered;
+    });
+  };
+
+  const handleSetPrimaryImage = (id: string) => {
+    setFormImages((prev) =>
+      prev.map((img) => ({
+        ...img,
+        isPrimary: img.id === id,
+      }))
+    );
+  };
 
   // Load Data from API
   const loadData = () => {
@@ -191,7 +257,21 @@ export const ProductsAdminPage: React.FC = () => {
     setFormShortDesc(product.shortDescription || '');
     setFormFullDesc(product.fullDescription || '');
     setFormAvailableUnits(product.availableUnits || 'MT,KG,PCS,Bundles');
-    setFormImageUrl(product.images?.[0]?.imageUrl || '');
+    
+    // Populate up to 2 existing images
+    if (product.images && product.images.length > 0) {
+      setFormImages(
+        product.images.slice(0, 2).map((img, idx) => ({
+          id: img.id || `img_${idx}`,
+          previewUrl: img.imageUrl,
+          isPrimary: img.isPrimary ?? idx === 0,
+          altText: img.altText || product.name,
+        }))
+      );
+    } else {
+      setFormImages([]);
+    }
+
     setFormAvailabilityStatus(product.availabilityStatus || 'AVAILABLE');
     setFormIsFeatured(product.isFeatured || false);
 
@@ -236,7 +316,7 @@ export const ProductsAdminPage: React.FC = () => {
     setFormShortDesc('');
     setFormFullDesc('');
     setFormAvailableUnits('MT,KG,PCS,Bundles');
-    setFormImageUrl('');
+    setFormImages([]);
     setFormAvailabilityStatus('AVAILABLE');
     setFormIsFeatured(false);
     setFormVariants([{ name: '', diameter: '', grade: '' }]);
@@ -273,6 +353,40 @@ export const ProductsAdminPage: React.FC = () => {
     setIsSubmitting(true);
 
     try {
+      // 1. Upload any pending new image files to server (up to 2 images)
+      const uploadedImageList: Array<{ imageUrl: string; isPrimary: boolean; displayOrder: number; altText?: string }> = [];
+
+      for (let i = 0; i < formImages.length; i++) {
+        const item = formImages[i];
+        let finalUrl = item.previewUrl;
+
+        if (item.file) {
+          const formData = new FormData();
+          formData.append('image', item.file);
+          formData.append('folder', 'products');
+
+          const uploadRes: any = await api.post('/media/upload', formData, {
+            headers: { 'Content-Type': 'multipart/form-data' },
+          });
+
+          if (uploadRes.data?.url) {
+            finalUrl = uploadRes.data.url;
+          }
+        }
+
+        uploadedImageList.push({
+          imageUrl: finalUrl,
+          isPrimary: item.isPrimary,
+          displayOrder: i,
+          altText: item.altText || formName.trim(),
+        });
+      }
+
+      // Ensure at least the first image is primary if none is marked
+      if (uploadedImageList.length > 0 && !uploadedImageList.some((img) => img.isPrimary)) {
+        uploadedImageList[0].isPrimary = true;
+      }
+
       const payload: any = {
         name: formName.trim(),
         categoryId: formCategoryId,
@@ -282,9 +396,7 @@ export const ProductsAdminPage: React.FC = () => {
         availableUnits: formAvailableUnits,
         availabilityStatus: formAvailabilityStatus,
         isFeatured: formIsFeatured,
-        images: formImageUrl.trim()
-          ? [{ imageUrl: formImageUrl.trim(), isPrimary: true, altText: formName }]
-          : undefined,
+        images: uploadedImageList.length > 0 ? uploadedImageList : undefined,
         variants: formVariants.filter((v) => v.name.trim().length > 0),
         specifications: formSpecs.filter((s) => s.specKey.trim().length > 0),
       };
@@ -797,29 +909,52 @@ export const ProductsAdminPage: React.FC = () => {
               <div className="space-y-5 text-xs">
                 {/* Hero Image & Headline Card */}
                 <div className="p-5 rounded-2xl bg-[#FAFCFA] border border-[#E2EBE5] space-y-4">
-                  <div className="relative rounded-xl overflow-hidden border border-[#E2EBE5] aspect-video bg-zinc-100">
-                    <img
-                      src={
-                        selectedProduct.images?.[0]?.imageUrl ||
-                        'https://images.unsplash.com/photo-1590496793929-36417d3117de?auto=format&fit=crop&w=600&q=80'
-                      }
-                      alt={selectedProduct.name}
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute top-3 right-3 flex items-center gap-2">
-                      <button
-                        onClick={() => handleToggleFeatured(selectedProduct.id)}
-                        className={`p-2 rounded-full shadow-md backdrop-blur-md transition ${
-                          selectedProduct.isFeatured
-                            ? 'bg-amber-500 text-white'
-                            : 'bg-white/80 text-zinc-600 hover:text-amber-500'
-                        }`}
-                        title="Toggle featured"
-                      >
-                        <Star className={`w-4 h-4 ${selectedProduct.isFeatured ? 'fill-current' : ''}`} />
-                      </button>
+                  {selectedProduct.images && selectedProduct.images.length > 1 ? (
+                    <div className="grid grid-cols-2 gap-3">
+                      {selectedProduct.images.slice(0, 2).map((img, idx) => (
+                        <div key={img.id || idx} className="relative rounded-xl overflow-hidden border border-[#E2EBE5] aspect-video bg-zinc-100 shadow-2xs">
+                          <img
+                            src={img.imageUrl}
+                            alt={img.altText || selectedProduct.name}
+                            className="w-full h-full object-cover"
+                          />
+                          <span
+                            className={`absolute top-2 left-2 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider shadow-xs ${
+                              img.isPrimary
+                                ? 'bg-[#07552B] text-white'
+                                : 'bg-zinc-800/80 text-white backdrop-blur-xs'
+                            }`}
+                          >
+                            {img.isPrimary ? 'Primary Showcase' : 'Secondary View'}
+                          </span>
+                        </div>
+                      ))}
                     </div>
-                  </div>
+                  ) : (
+                    <div className="relative rounded-xl overflow-hidden border border-[#E2EBE5] aspect-video bg-zinc-100">
+                      <img
+                        src={
+                          selectedProduct.images?.[0]?.imageUrl ||
+                          'https://images.unsplash.com/photo-1590496793929-36417d3117de?auto=format&fit=crop&w=600&q=80'
+                        }
+                        alt={selectedProduct.name}
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute top-3 right-3 flex items-center gap-2">
+                        <button
+                          onClick={() => handleToggleFeatured(selectedProduct.id)}
+                          className={`p-2 rounded-full shadow-md backdrop-blur-md transition ${
+                            selectedProduct.isFeatured
+                              ? 'bg-amber-500 text-white'
+                              : 'bg-white/80 text-zinc-600 hover:text-amber-500'
+                          }`}
+                          title="Toggle featured"
+                        >
+                          <Star className={`w-4 h-4 ${selectedProduct.isFeatured ? 'fill-current' : ''}`} />
+                        </button>
+                      </div>
+                    </div>
+                  )}
 
                   <div>
                     <div className="flex items-center justify-between">
@@ -1032,35 +1167,134 @@ export const ProductsAdminPage: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Imagery & Descriptions */}
+                {/* Product Imagery & Upload Section (Up to 2 images) */}
                 <div className="p-4 rounded-2xl bg-[#FAFCFA] border border-[#E2EBE5] space-y-3">
-                  <span className="font-bold text-xs uppercase tracking-wider text-[#07552B] block">
-                    Product Media & Descriptions
-                  </span>
-
-                  <div>
-                    <label className="font-bold text-[#111814] block mb-1">Image URL (Unsplash or Cloudinary)</label>
-                    <input
-                      type="url"
-                      value={formImageUrl}
-                      onChange={(e) => setFormImageUrl(e.target.value)}
-                      placeholder="https://images.unsplash.com/photo-..."
-                      className="w-full bg-white border border-[#D0DDD4] rounded-xl px-3.5 py-2 text-xs text-[#111814] focus:outline-none focus:border-[#07552B]"
-                    />
-                    {formImageUrl && (
-                      <div className="mt-2 flex items-center gap-3 p-2 bg-white rounded-xl border border-[#D0DDD4]">
-                        <img
-                          src={formImageUrl}
-                          alt="Preview"
-                          className="w-16 h-12 rounded-lg object-cover bg-zinc-100"
-                          onError={(e: any) => {
-                            e.target.style.display = 'none';
-                          }}
-                        />
-                        <span className="text-[11px] text-[#526458]">Live preview rendered</span>
-                      </div>
-                    )}
+                  <div className="flex items-center justify-between">
+                    <span className="font-bold text-xs uppercase tracking-wider text-[#07552B] block">
+                      Product Media & Images (Max 2)
+                    </span>
+                    <span
+                      className={`text-[11px] font-bold px-2.5 py-0.5 rounded-full border ${
+                        formImages.length === 2
+                          ? 'bg-emerald-100 text-emerald-800 border-emerald-300'
+                          : 'bg-[#EBF3ED] text-[#07552B] border-[#D0DDD4]'
+                      }`}
+                    >
+                      {formImages.length} / 2 uploaded
+                    </span>
                   </div>
+
+                  {/* Hidden File Input for Native File Selection */}
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept="image/png,image/jpeg,image/webp,image/jpg"
+                    multiple
+                    className="hidden"
+                    onChange={(e) => {
+                      handleImageFilesSelected(e.target.files);
+                      if (e.target) e.target.value = '';
+                    }}
+                  />
+
+                  {/* Preview Cards for Uploaded Images */}
+                  {formImages.length > 0 && (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      {formImages.map((img, index) => (
+                        <div
+                          key={img.id}
+                          className={`relative rounded-xl border-2 p-2.5 bg-white flex flex-col transition shadow-2xs ${
+                            img.isPrimary
+                              ? 'border-[#07552B] ring-2 ring-[#07552B]/15'
+                              : 'border-[#D0DDD4]'
+                          }`}
+                        >
+                          <div className="relative h-32 rounded-lg overflow-hidden bg-zinc-100 mb-2">
+                            <img
+                              src={img.previewUrl}
+                              alt={img.altText || `Product Image ${index + 1}`}
+                              className="w-full h-full object-cover"
+                            />
+                            <div className="absolute top-2 left-2 flex gap-1">
+                              <span
+                                className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider shadow-xs ${
+                                  img.isPrimary
+                                    ? 'bg-[#07552B] text-white'
+                                    : 'bg-zinc-800/80 text-white backdrop-blur-xs'
+                                }`}
+                              >
+                                {img.isPrimary ? 'Primary Showcase' : `Secondary View`}
+                              </span>
+                            </div>
+
+                            <button
+                              type="button"
+                              onClick={() => handleRemoveImage(img.id)}
+                              className="absolute top-2 right-2 p-1.5 rounded-lg bg-rose-600 text-white hover:bg-rose-700 shadow-sm transition active:scale-95"
+                              title="Remove image"
+                            >
+                              <Trash2 className="w-3.5 h-3.5" />
+                            </button>
+                          </div>
+
+                          <div className="flex items-center justify-between text-xs mt-auto pt-1 border-t border-slate-100">
+                            <span className="text-[11px] text-[#526458] truncate max-w-[120px]">
+                              {img.altText || `Image ${index + 1}`}
+                            </span>
+                            {!img.isPrimary ? (
+                              <button
+                                type="button"
+                                onClick={() => handleSetPrimaryImage(img.id)}
+                                className="text-[11px] font-bold text-[#07552B] hover:text-[#053d1f] hover:underline"
+                              >
+                                Set as Primary
+                              </button>
+                            ) : (
+                              <span className="text-[11px] font-bold text-[#07552B] flex items-center gap-1">
+                                <Check className="w-3 h-3" /> Showcase
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Dropzone Upload Button (Visible when fewer than 2 images uploaded) */}
+                  {formImages.length < 2 && (
+                    <div
+                      onDragOver={(e) => {
+                        e.preventDefault();
+                        setIsDraggingOver(true);
+                      }}
+                      onDragLeave={() => setIsDraggingOver(false)}
+                      onDrop={(e) => {
+                        e.preventDefault();
+                        setIsDraggingOver(false);
+                        handleImageFilesSelected(e.dataTransfer.files);
+                      }}
+                      onClick={() => fileInputRef.current?.click()}
+                      className={`border-2 border-dashed rounded-xl p-5 text-center cursor-pointer transition flex flex-col items-center justify-center gap-2 ${
+                        isDraggingOver
+                          ? 'border-[#07552B] bg-[#EBF3ED]'
+                          : 'border-[#B8D1C1] bg-[#F4F8F5] hover:bg-[#EBF3ED] hover:border-[#07552B]'
+                      }`}
+                    >
+                      <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-[#07552B] shadow-2xs border border-[#D0DDD4]">
+                        <UploadCloud className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <p className="font-bold text-xs text-[#111814]">
+                          {formImages.length === 0
+                            ? 'Click to upload product images, or drag & drop'
+                            : 'Click to upload 2nd image (1 slot remaining)'}
+                        </p>
+                        <p className="text-[11px] text-[#526458] mt-0.5">
+                          PNG, JPG, or WebP up to 10MB (max 2 images). Both will be displayed in the product item page gallery.
+                        </p>
+                      </div>
+                    </div>
+                  )}
 
                   <div>
                     <label className="font-bold text-[#111814] block mb-1">Short Description</label>
