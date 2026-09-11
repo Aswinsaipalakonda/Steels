@@ -23,7 +23,7 @@ export class EnquiryService {
   static async createPublicEnquiry(data: {
     customerName: string;
     phone: string;
-    email: string;
+    email?: string;
     company?: string;
     location?: string;
     productId?: string | null;
@@ -34,12 +34,15 @@ export class EnquiryService {
     sourcePage?: string;
   }) {
     const enquiryNumber = await this.generateEnquiryNumber();
+    const effectiveEmail = data.email && data.email.trim()
+      ? data.email.trim().toLowerCase()
+      : `${data.phone.replace(/[^0-9]/g, '') || 'client'}@customer.steelplatform.com`;
 
     return prisma.$transaction(async (tx) => {
       // 1. Find or create Customer
       let customer = await tx.customer.findFirst({
         where: {
-          OR: [{ email: data.email.toLowerCase() }, { phone: data.phone }],
+          OR: [{ phone: data.phone }, { email: effectiveEmail }],
         },
       });
 
@@ -47,7 +50,7 @@ export class EnquiryService {
         customer = await tx.customer.create({
           data: {
             name: data.customerName,
-            email: data.email.toLowerCase(),
+            email: effectiveEmail,
             phone: data.phone,
             company: data.company,
             location: data.location,

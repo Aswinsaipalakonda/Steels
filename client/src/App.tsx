@@ -28,9 +28,12 @@ import { CustomersAdminPage } from './admin/pages/CustomersAdminPage';
 import { BrandsAdminPage } from './admin/pages/BrandsAdminPage';
 import { SettingsAdminPage } from './admin/pages/SettingsAdminPage';
 
+import { ScrollToTop } from './components/common/ScrollToTop';
+
 export default function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <ToastProvider>
         <AdminAuthProvider>
           <Routes>

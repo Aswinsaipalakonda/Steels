@@ -116,6 +116,52 @@ export const SettingsAdminPage: React.FC = () => {
           />
         </div>
 
+        <h3 className="text-sm font-bold uppercase tracking-wider text-[#07552B] border-b border-[#E2EBE5] pb-2 pt-4">
+          Steel Market Pricing & Calculator Settings
+        </h3>
+        <p className="text-xs text-[#526458]">
+          Configure base market rates (per Metric Tonne in INR) and GST percentage used by the product page live price estimator.
+        </p>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <Input
+            label="TMT Rebars Base Rate (₹ / MT)"
+            type="number"
+            value={settings.tmt_base_rate_per_mt || '52000'}
+            onChange={(e) => handleChange('tmt_base_rate_per_mt', e.target.value)}
+          />
+          <Input
+            label="Structural Steel Base Rate (₹ / MT)"
+            type="number"
+            value={settings.structural_base_rate_per_mt || '54000'}
+            onChange={(e) => handleChange('structural_base_rate_per_mt', e.target.value)}
+          />
+          <Input
+            label="Plates & Coils Base Rate (₹ / MT)"
+            type="number"
+            value={settings.plates_base_rate_per_mt || '56000'}
+            onChange={(e) => handleChange('plates_base_rate_per_mt', e.target.value)}
+          />
+          <Input
+            label="Pipes & Hollow Base Rate (₹ / MT)"
+            type="number"
+            value={settings.pipes_base_rate_per_mt || '55000'}
+            onChange={(e) => handleChange('pipes_base_rate_per_mt', e.target.value)}
+          />
+          <Input
+            label="Default Fallback Rate (₹ / MT)"
+            type="number"
+            value={settings.default_steel_rate_per_mt || '52500'}
+            onChange={(e) => handleChange('default_steel_rate_per_mt', e.target.value)}
+          />
+          <Input
+            label="Applicable GST (%)"
+            type="number"
+            value={settings.gst_rate_percent || '18'}
+            onChange={(e) => handleChange('gst_rate_percent', e.target.value)}
+          />
+        </div>
+
         <div className="pt-4 border-t border-[#E2EBE5]">
           <Button type="submit" variant="primary" size="lg" isLoading={isSaving}>
             Save All Settings

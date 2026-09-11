@@ -5,7 +5,7 @@ export const createPublicEnquirySchema = z.object({
   body: z.object({
     customerName: z.string().min(2, 'Name must be at least 2 characters'),
     phone: z.string().min(8, 'Valid phone number is required'),
-    email: z.string().email('Valid email is required'),
+    email: z.string().email('Valid email is required').optional().or(z.literal('')),
     company: z.string().optional(),
     location: z.string().optional(),
     productId: z.string().uuid().optional().nullable(),
