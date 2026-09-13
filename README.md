@@ -1,4 +1,4 @@
-# Apex Steel — Premium B2B Steel Catalogue & Enquiry Platform
+# Steel — Premium B2B Steel Catalogue & Enquiry Platform
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-emerald.svg)](https://opensource.org/licenses/MIT)
 [![Node.js Version](https://img.shields.io/badge/Node.js-v18%2B%20%7C%20v20%2B-063A20.svg)](https://nodejs.org/)
