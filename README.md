@@ -13,7 +13,7 @@
 
 ## 📌 Project Overview
 
-Unlike generic consumer e-commerce stores with traditional shopping carts and immediate checkout, the **Apex Steel Platform** is engineered around a **Product Catalogue + Structured Commercial Quotation Pipeline**.
+Unlike generic consumer e-commerce stores with traditional shopping carts and immediate checkout, the **Steel Platform** is engineered around a **Product Catalogue + Structured Commercial Quotation Pipeline**.
 
 Contractors, civil builders, and industrial procurement teams can browse primary mill steel materials, filter by technical standards (BIS 1786, IS 2062), select dimensional variants (rebar diameters, structural beam sizes, plate thicknesses), specify quantity and unit, and request commercial quotes directly.
 
