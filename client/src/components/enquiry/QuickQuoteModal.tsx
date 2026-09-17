@@ -131,7 +131,7 @@ export const QuickQuoteModal: React.FC<QuickQuoteModalProps> = ({
             <Input
               label="Full Name"
               name="customerName"
-              placeholder="e.g. Rajesh Patil"
+              placeholder="Enter your full name"
               required
               value={formData.customerName}
               onChange={handleChange}
@@ -140,7 +140,7 @@ export const QuickQuoteModal: React.FC<QuickQuoteModalProps> = ({
               label="Phone Number"
               name="phone"
               type="tel"
-              placeholder="+91 98765 43210"
+              placeholder="Enter your 10-digit mobile number"
               required
               value={formData.phone}
               onChange={handleChange}
@@ -152,7 +152,7 @@ export const QuickQuoteModal: React.FC<QuickQuoteModalProps> = ({
               label="Email Address"
               name="email"
               type="email"
-              placeholder="procurement@company.com"
+              placeholder="Enter your email address"
               required
               value={formData.email}
               onChange={handleChange}
@@ -160,7 +160,7 @@ export const QuickQuoteModal: React.FC<QuickQuoteModalProps> = ({
             <Input
               label="Company / Firm Name"
               name="company"
-              placeholder="e.g. Patil Builders & Infra"
+              placeholder="Enter company or firm name"
               value={formData.company}
               onChange={handleChange}
             />
@@ -173,7 +173,7 @@ export const QuickQuoteModal: React.FC<QuickQuoteModalProps> = ({
                 name="quantity"
                 type="number"
                 step="any"
-                placeholder="e.g. 25"
+                placeholder="Enter required quantity"
                 value={formData.quantity}
                 onChange={handleChange}
               />
@@ -192,7 +192,7 @@ export const QuickQuoteModal: React.FC<QuickQuoteModalProps> = ({
           <Input
             label="Delivery Site / Project Location"
             name="location"
-            placeholder="City, Industrial Area, or Pincode"
+            placeholder="Enter delivery site, city, or pincode"
             value={formData.location}
             onChange={handleChange}
           />
@@ -200,7 +200,7 @@ export const QuickQuoteModal: React.FC<QuickQuoteModalProps> = ({
           <Textarea
             label="Specific Requirements / Cut Lengths / Notes"
             name="message"
-            placeholder="Mention required steel grades, schedule of dispatch, or special test certificate needs..."
+            placeholder="Enter required steel grades, schedule of dispatch, or specific notes..."
             value={formData.message}
             onChange={handleChange}
             rows={2}

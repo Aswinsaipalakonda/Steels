@@ -156,7 +156,7 @@ export const RequestQuotePage: React.FC = () => {
                         name="quantity"
                         type="number"
                         step="any"
-                        placeholder="e.g. 50"
+                        placeholder="Enter required quantity"
                         required
                         value={formData.quantity}
                         onChange={handleChange}
@@ -174,7 +174,7 @@ export const RequestQuotePage: React.FC = () => {
                     <Input
                       label="Contact Person Name"
                       name="customerName"
-                      placeholder="e.g. Anand Deshmukh"
+                      placeholder="Enter your full name"
                       required
                       value={formData.customerName}
                       onChange={handleChange}
@@ -183,7 +183,7 @@ export const RequestQuotePage: React.FC = () => {
                       label="Phone Number"
                       name="phone"
                       type="tel"
-                      placeholder="+91 98765 43210"
+                      placeholder="Enter your 10-digit mobile number"
                       required
                       value={formData.phone}
                       onChange={handleChange}
@@ -195,7 +195,7 @@ export const RequestQuotePage: React.FC = () => {
                       label="Business Email"
                       name="email"
                       type="email"
-                      placeholder="purchasing@company.com"
+                      placeholder="Enter your business email address"
                       required
                       value={formData.email}
                       onChange={handleChange}
@@ -203,7 +203,7 @@ export const RequestQuotePage: React.FC = () => {
                     <Input
                       label="Company / Contracting Entity"
                       name="company"
-                      placeholder="e.g. Deshmukh Civil Projects LLP"
+                      placeholder="Enter company or firm name"
                       value={formData.company}
                       onChange={handleChange}
                     />
@@ -212,7 +212,7 @@ export const RequestQuotePage: React.FC = () => {
                   <Input
                     label="Project Delivery Site / City"
                     name="location"
-                    placeholder="e.g. Navi Mumbai Airport Logistics Hub, Sector 12"
+                    placeholder="Enter project delivery site, city, or pincode"
                     required
                     value={formData.location}
                     onChange={handleChange}
@@ -221,7 +221,7 @@ export const RequestQuotePage: React.FC = () => {
                   <Textarea
                     label="Detailed Steel Specifications / Cut Lengths"
                     name="message"
-                    placeholder="List required bar diameters (e.g. 12mm: 15 MT, 16mm: 20 MT), delivery schedule dates, or special chemical composition constraints..."
+                    placeholder="Enter required dimensions, delivery schedule dates, or special notes..."
                     rows={4}
                     value={formData.message}
                     onChange={handleChange}

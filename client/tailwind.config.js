@@ -26,6 +26,7 @@ export default {
       },
       fontFamily: {
         sans: ['Satoshi', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        numbers: ['"Times New Roman"', 'Times', 'serif'],
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-out forwards',

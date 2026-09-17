@@ -14,6 +14,10 @@
     background-color: #FAFCFA;
     color: #111814;
   }
+
+  .font-numbers {
+    font-family: 'Times New Roman', Times, serif;
+  }
 }
 
 /* Custom scrollbar matching light forest green theme */

@@ -123,7 +123,7 @@ export const ContactPage: React.FC = () => {
                     <Input
                       label="Your Name"
                       name="name"
-                      placeholder="e.g. Ramesh Kumar"
+                      placeholder="Enter your full name"
                       required
                       value={formData.name}
                       onChange={handleChange}
@@ -132,7 +132,7 @@ export const ContactPage: React.FC = () => {
                       label="Phone Number"
                       name="phone"
                       type="tel"
-                      placeholder="+91 98765 43210"
+                      placeholder="Enter your 10-digit mobile number"
                       value={formData.phone}
                       onChange={handleChange}
                     />
@@ -143,7 +143,7 @@ export const ContactPage: React.FC = () => {
                       label="Email Address"
                       name="email"
                       type="email"
-                      placeholder="ramesh@construction.com"
+                      placeholder="Enter your email address"
                       required
                       value={formData.email}
                       onChange={handleChange}
@@ -151,7 +151,7 @@ export const ContactPage: React.FC = () => {
                     <Input
                       label="Subject"
                       name="subject"
-                      placeholder="e.g. Bulk 500 MT Supply Inquiry"
+                      placeholder="Enter inquiry subject"
                       value={formData.subject}
                       onChange={handleChange}
                     />
@@ -160,7 +160,7 @@ export const ContactPage: React.FC = () => {
                   <Textarea
                     label="Your Message / Query"
                     name="message"
-                    placeholder="Tell us about your requirements, project details, or delivery location..."
+                    placeholder="Enter your message, project details, or query..."
                     rows={4}
                     required
                     value={formData.message}
